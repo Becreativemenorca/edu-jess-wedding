@@ -1,0 +1,44 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "BeCreative Wedding Sites — test seguro",
+    "description": "Instala el plugin en un WordPress temporal y crea una boda de prueba de Edu & Jess.",
+    "author": "BeCreative Weddings"
+  },
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "landingPage": "/wp-admin/edit.php?post_type=bcw_wedding",
+  "siteOptions": {
+    "blogname": "BeCreative Wedding Sites — Playground",
+    "permalink_structure": "/%postname%/"
+  },
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "git:directory",
+        "url": "https://github.com/Becreativemenorca/edu-jess-wedding.git",
+        "ref": "wordpress-system",
+        "path": "wordpress-plugin/becreative-wedding-sites",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "becreative-wedding-sites"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; $existing=get_page_by_path('edu-jess-test',OBJECT,'bcw_wedding'); if(!$existing){ $id=wp_insert_post(array('post_type'=>'bcw_wedding','post_status'=>'publish','post_title'=>'Edu & Jess — Test','post_name'=>'edu-jess-test'),true); if(is_wp_error($id)){throw new RuntimeException($id->get_error_message());} update_post_meta($id,'bcw_partner_1','Edu'); update_post_meta($id,'bcw_partner_2','Jess'); update_post_meta($id,'bcw_date','2027-07-10'); update_post_meta($id,'bcw_venue','Llucasaldent Gran'); update_post_meta($id,'bcw_location','Menorca'); update_post_meta($id,'bcw_tagline','Todo lo que nos trajo hasta aquí.'); update_post_meta($id,'bcw_intro','Nos hace muchísima ilusión compartir este día con las personas que también forman parte de nuestra historia.'); update_post_meta($id,'bcw_closing','Nos vemos donde tantas veces hemos sido felices.'); update_post_meta($id,'bcw_template','minimal-editorial'); update_post_meta($id,'bcw_sections',array('historia'=>1,'la-boda'=>1,'menorca'=>1,'informacion'=>1,'rsvp'=>1)); update_post_meta($id,'bcw_story',array(array('year'=>'2010','title'=>'Nosotros','text'=>'Empezamos siendo Edu y Jess. Sin saber todavía todo lo que aquella historia iba a llegar a contener.','layout'=>'standard'),array('year'=>'2018','title'=>'Menorca','text'=>'Y Menorca entró en nuestra historia. Con los años dejó de ser simplemente un lugar al que viajar para convertirse en parte de nosotros.','layout'=>'collage'),array('year'=>'2023','title'=>'Éramos dos. Volvimos siendo tres.','text'=>'Hicimos nuestra última escapada a la isla siendo solo Edu y Jess. Lucas también empezó en Menorca.','layout'=>'feature'),array('year'=>'2026','title'=>'Cavalleria','text'=>'En el Far de Cavalleria, frente al mar de una isla que llevaba años acompañando nuestra historia, Edu me pidió que nos casáramos.','layout'=>'feature'))); update_post_meta($id,'bcw_wedding_day',array(array('moment'=>'Ceremonia','place'=>'Encinar','time'=>'','text'=>'El comienzo del día entre encinas.'),array('moment'=>'Cóctel','place'=>'Por definir','time'=>'','text'=>'La luz del atardecer de Menorca.'),array('moment'=>'Cena','place'=>'Bajo las moreras','time'=>'','text'=>'La cena bajo las moreras.'),array('moment'=>'Fiesta','place'=>'Por definir','time'=>'','text'=>'Y después, la noche.'))); update_post_meta($id,'bcw_menorca',array(array('category'=>'Nuestra historia','place'=>'Far de Cavalleria','text'=>'Aquí nos prometimos.'))); update_post_meta($id,'bcw_information',array(array('title'=>'Información en preparación','text'=>'Añadiremos vuelos, ferry, alojamiento, transporte y otros detalles cuando estén confirmados.'))); update_post_meta($id,'bcw_rsvp_enabled','1'); update_post_meta($id,'bcw_rsvp_fields',array('email'=>1,'companions'=>1,'children'=>1,'transport'=>1,'arrival'=>1,'departure'=>1,'allergies'=>1,'special_needs'=>1)); } flush_rewrite_rules(); ?>"
+    },
+    {
+      "step": "login",
+      "username": "admin"
+    }
+  ]
+}
