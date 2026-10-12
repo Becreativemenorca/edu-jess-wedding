@@ -90,6 +90,12 @@ class BCW_Partner_Portal {
     }
 
     public static function render( $wedding_id ) {
+        if ( '1' !== get_post_meta( $wedding_id, 'bcw_portal_enabled', true ) && ! current_user_can( 'manage_options' ) ) {
+            status_header( 404 );
+            echo '<div class="bcw-empty">El panel privado no está activado para esta boda.</div>';
+            return;
+        }
+
         if ( ! is_user_logged_in() ) {
             echo '<section class="bcw-page-head"><p class="bcw-eyebrow">Panel privado</p><h1 class="bcw-page-title">Acceso de la pareja.</h1></section>';
             echo '<section class="bcw-portal-login">';
