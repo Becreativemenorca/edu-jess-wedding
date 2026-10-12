@@ -1,0 +1,132 @@
+name: WordPress integration test
+
+on:
+  push:
+    branches:
+      - wordpress-system
+    paths:
+      - 'wordpress-plugin/**'
+      - '.wp-env.json'
+      - '.github/workflows/wordpress-integration.yml'
+  workflow_dispatch:
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install wp-env
+        run: npm install --global @wordpress/env
+
+      - name: Start isolated WordPress
+        run: wp-env start
+
+      - name: Confirm plugin is active
+        run: wp-env run cli wp plugin is-active becreative-wedding-sites
+
+      - name: Confirm RSVP table exists
+        run: |
+          wp-env run cli wp eval '
+          global $wpdb;
+          $table = $wpdb->prefix . "bcw_rsvp";
+          $found = $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table ) );
+          if ( $found !== $table ) { fwrite( STDERR, "RSVP table missing\n" ); exit(1); }
+          echo "RSVP table OK\n";
+          '
+
+      - name: Create Edu and Jess test wedding
+        run: |
+          wp-env run cli wp eval '
+          $id = wp_insert_post(array(
+            "post_type" => "bcw_wedding",
+            "post_status" => "publish",
+            "post_title" => "Edu & Jess — Integration Test",
+            "post_name" => "edu-jess-test"
+          ), true);
+          if ( is_wp_error($id) ) { fwrite(STDERR, $id->get_error_message()); exit(1); }
+          update_post_meta($id, "bcw_partner_1", "Edu");
+          update_post_meta($id, "bcw_partner_2", "Jess");
+          update_post_meta($id, "bcw_date", "2027-07-10");
+          update_post_meta($id, "bcw_venue", "Llucasaldent Gran");
+          update_post_meta($id, "bcw_location", "Menorca");
+          update_post_meta($id, "bcw_tagline", "Todo lo que nos trajo hasta aquí.");
+          update_post_meta($id, "bcw_sections", array(
+            "historia" => 1,
+            "la-boda" => 1,
+            "menorca" => 1,
+            "informacion" => 1,
+            "rsvp" => 1
+          ));
+          update_post_meta($id, "bcw_story", array(
+            array(
+              "year" => "2023",
+              "title" => "Éramos dos. Volvimos siendo tres.",
+              "text" => "Lucas también empezó en Menorca.",
+              "layout" => "feature"
+            )
+          ));
+          update_post_meta($id, "bcw_rsvp_enabled", "1");
+          update_post_meta($id, "bcw_rsvp_fields", array(
+            "email" => 1,
+            "companions" => 1,
+            "children" => 1,
+            "transport" => 1,
+            "arrival" => 1,
+            "departure" => 1,
+            "allergies" => 1,
+            "special_needs" => 1
+          ));
+          flush_rewrite_rules();
+          echo $id;
+          '
+
+      - name: Test public wedding pages
+        run: |
+          curl --fail --silent --show-error http://localhost:8888/bodas/edu-jess-test/ | grep -q "Edu"
+          curl --fail --silent --show-error http://localhost:8888/bodas/edu-jess-test/historia/ | grep -q "Volvimos siendo tres"
+          curl --fail --silent --show-error http://localhost:8888/bodas/edu-jess-test/rsvp/ | grep -q "Enviar confirmación"
+
+      - name: Test RSVP insert
+        run: |
+          wp-env run cli wp eval '
+          $w = get_page_by_path("edu-jess-test", OBJECT, "bcw_wedding");
+          if ( ! $w ) { fwrite(STDERR, "Wedding missing\n"); exit(1); }
+          global $wpdb;
+          $ok = $wpdb->insert(
+            BCW_RSVP::table_name(),
+            array(
+              "wedding_id" => $w->ID,
+              "submission_uuid" => wp_generate_uuid4(),
+              "guest_name" => "Invitado Test",
+              "email" => "test@example.com",
+              "attendance" => "yes",
+              "companions" => "",
+              "children_count" => 0,
+              "transport" => "no",
+              "arrival" => "",
+              "departure" => "",
+              "allergies" => "",
+              "special_needs" => "",
+              "answers" => wp_json_encode(array()),
+              "created_at" => current_time("mysql"),
+              "updated_at" => current_time("mysql")
+            )
+          );
+          if ( ! $ok ) { fwrite(STDERR, $wpdb->last_error . "\n"); exit(1); }
+          $stats = BCW_RSVP::stats($w->ID);
+          if ( 1 !== (int) $stats["yes"] ) { fwrite(STDERR, "Stats failed\n"); exit(1); }
+          echo "RSVP OK\n";
+          '
+
+      - name: Stop environment
+        if: always()
+        run: wp-env stop
