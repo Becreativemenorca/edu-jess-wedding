@@ -24,8 +24,65 @@ class BCW_Wedding_Router {
 
     public static function add_rewrite_rules() {
         add_rewrite_rule(
-            '^bodas/([^/]+)/(historia|la-boda|menorca|informacion|rsvp)/?$',
-            'index.php?bcw_wedding=$matches[1]&bcw_section=$matches[2]',
+            '^bodas/([^/]+)/(historia|la-boda|menorca|informacion|rsvp)/?
+    }
+
+    public static function query_vars( $vars ) {
+        $vars[] = 'bcw_section';
+        return $vars;
+    }
+
+    public static function enqueue_assets() {
+        if ( ! is_singular( BCW_Wedding_Post_Type::POST_TYPE ) ) {
+            return;
+        }
+
+        wp_enqueue_style(
+            'bcw-minimal-editorial',
+            BCW_WEDDING_SITES_URL . 'assets/css/minimal-editorial.css',
+            array(),
+            BCW_WEDDING_SITES_VERSION
+        );
+
+        wp_enqueue_script(
+            'bcw-wedding-front',
+            BCW_WEDDING_SITES_URL . 'assets/js/frontend.js',
+            array(),
+            BCW_WEDDING_SITES_VERSION,
+            true
+        );
+    }
+
+    public static function template_include( $template ) {
+        $section = get_query_var( 'bcw_section' );
+
+        if ( is_singular( BCW_Wedding_Post_Type::POST_TYPE ) || $section ) {
+            $plugin_template = BCW_WEDDING_SITES_DIR . 'templates/minimal-editorial/router.php';
+            if ( file_exists( $plugin_template ) ) {
+                return $plugin_template;
+            }
+        }
+
+        return $template;
+    }
+
+    public static function section() {
+        $section = sanitize_key( get_query_var( 'bcw_section' ) );
+        return in_array( $section, self::$sections, true ) ? $section : 'inicio';
+    }
+
+    public static function url( $post_id, $section = 'inicio' ) {
+        $base = trailingslashit( get_permalink( $post_id ) );
+
+        if ( 'inicio' === $section ) {
+            return $base;
+        }
+
+        return $base . $section . '/';
+    }
+}
+,
+            'index.php?post_type=' . BCW_Wedding_Post_Type::POST_TYPE . '&name=$matches[1]&bcw_section=$matches[2]',
             'top'
         );
     }
