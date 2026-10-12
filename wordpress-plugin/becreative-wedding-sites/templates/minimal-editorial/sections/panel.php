@@ -1,0 +1,1 @@
+<?php BCW_Partner_Portal::render( $post_id ); ?>
