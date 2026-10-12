@@ -31,7 +31,8 @@ class BCW_Partner_Portal {
         $created = false;
 
         if ( ! $user ) {
-            $base_login = sanitize_user( current( explode( '@', $email ) ), true );
+            $email_parts = explode( '@', $email );
+            $base_login  = sanitize_user( $email_parts[0], true );
             if ( ! $base_login ) {
                 $base_login = 'pareja';
             }
