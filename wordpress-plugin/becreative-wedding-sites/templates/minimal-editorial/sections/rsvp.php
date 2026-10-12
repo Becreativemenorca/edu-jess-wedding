@@ -7,3 +7,18 @@
 <section class="bcw-rsvp-box" data-reveal>
     <?php BCW_RSVP::render_form( $post_id ); ?>
 </section>
+
+<?php
+$closing_image = $data->closing_image_url( 'full' );
+$closing_text  = $data->get( 'bcw_closing' );
+
+if ( $closing_image || $closing_text ) :
+?>
+<section class="bcw-closing" data-reveal>
+    <?php if ( $closing_image ) : ?><img src="<?php echo esc_url( $closing_image ); ?>" alt=""><?php endif; ?>
+    <div class="bcw-closing-copy">
+        <p class="bcw-eyebrow"><?php echo esc_html( trim( $data->get( 'bcw_location' ) . ( $date ? ' · ' . $date : '' ) ) ); ?></p>
+        <?php if ( $closing_text ) : ?><h2><?php echo esc_html( $closing_text ); ?></h2><?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
