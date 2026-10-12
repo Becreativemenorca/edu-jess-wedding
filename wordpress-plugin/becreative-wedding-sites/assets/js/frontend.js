@@ -15,4 +15,38 @@ if (menuButton && menu) {
     const open = menu.classList.toggle('is-open');
     menuButton.setAttribute('aria-expanded', String(open));
   });
+
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+const entryCover = document.querySelector('[data-entry-cover]');
+const enterButton = document.querySelector('[data-enter-wedding]');
+
+if (entryCover) {
+  const weddingId = entryCover.dataset.weddingId || 'wedding';
+  const storageKey = 'bcw-entered-' + weddingId;
+
+  try {
+    if (window.sessionStorage.getItem(storageKey) === '1') {
+      entryCover.remove();
+    }
+  } catch (e) {
+    // If storage is unavailable, the cover simply appears again on refresh.
+  }
+
+  if (enterButton && document.body.contains(entryCover)) {
+    enterButton.addEventListener('click', () => {
+      try {
+        window.sessionStorage.setItem(storageKey, '1');
+      } catch (e) {}
+
+      entryCover.classList.add('is-leaving');
+      window.setTimeout(() => entryCover.remove(), 550);
+    });
+  }
 }
