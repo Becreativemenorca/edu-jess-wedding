@@ -21,6 +21,52 @@ class BCW_Partner_Portal {
         add_filter( 'show_admin_bar', array( __CLASS__, 'hide_admin_bar_for_couples' ) );
     }
 
+    public static function ensure_user_access( $wedding_id, $email, $notify = false ) {
+        $email = sanitize_email( $email );
+        if ( ! $email || ! is_email( $email ) ) {
+            return new WP_Error( 'invalid_email', 'Introduce un email válido para el acceso de la pareja.' );
+        }
+
+        $user = get_user_by( 'email', $email );
+        $created = false;
+
+        if ( ! $user ) {
+            $base_login = sanitize_user( current( explode( '@', $email ) ), true );
+            if ( ! $base_login ) {
+                $base_login = 'pareja';
+            }
+
+            $login = $base_login;
+            $i = 1;
+            while ( username_exists( $login ) ) {
+                $login = $base_login . $i;
+                $i++;
+            }
+
+            $user_id = wp_create_user( $login, wp_generate_password( 32, true, true ), $email );
+            if ( is_wp_error( $user_id ) ) {
+                return $user_id;
+            }
+
+            $user = get_user_by( 'id', $user_id );
+            $user->set_role( 'bcw_couple' );
+            $created = true;
+        }
+
+        update_user_meta( $user->ID, 'bcw_wedding_id', absint( $wedding_id ) );
+        update_post_meta( $wedding_id, 'bcw_portal_user_id', absint( $user->ID ) );
+
+        if ( $notify && $created ) {
+            wp_new_user_notification( $user->ID, null, 'user' );
+        }
+
+        return array(
+            'user_id'  => absint( $user->ID ),
+            'created'  => $created,
+            'email'    => $email,
+        );
+    }
+
     public static function hide_admin_bar_for_couples( $show ) {
         $user = wp_get_current_user();
         return in_array( 'bcw_couple', (array) $user->roles, true ) ? false : $show;
