@@ -27,10 +27,6 @@ if ( ! $data->section_enabled( $section ) ) {
     exit;
 }
 
-$og_image = $data->og_image_url( 'full' );
-if ( ! $og_image ) {
-    $og_image = $data->hero_image_url( 'full' );
-}
 
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
@@ -38,15 +34,6 @@ if ( ! $og_image ) {
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo esc_html( $names ? $names . ' · Be Creative Weddings' : 'Boda · Be Creative Weddings' ); ?></title>
-    <meta property="og:title" content="<?php echo esc_attr( $names . ( $date ? ' · ' . $date : '' ) ); ?>">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo esc_url( BCW_Wedding_Router::url( $post_id ) ); ?>">
-    <?php if ( $data->get( 'bcw_tagline' ) ) : ?>
-        <meta property="og:description" content="<?php echo esc_attr( $data->get( 'bcw_tagline' ) ); ?>">
-    <?php endif; ?>
-    <?php if ( $og_image ) : ?>
-        <meta property="og:image" content="<?php echo esc_url( $og_image ); ?>">
-    <?php endif; ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class( 'bcw-wedding bcw-template-minimal-editorial' ); ?>>
