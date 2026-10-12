@@ -1,0 +1,39 @@
+name: Build installable plugin ZIP
+
+on:
+  push:
+    branches:
+      - wordpress-system
+    paths:
+      - 'wordpress-plugin/**'
+      - '.github/workflows/build-plugin-zip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Build plugin ZIP
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cd wordpress-plugin
+          zip -r ../dist/becreative-wedding-sites.zip becreative-wedding-sites
+
+      - name: Commit ZIP
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/becreative-wedding-sites.zip
+          if git diff --cached --quiet; then
+            echo "ZIP unchanged"
+            exit 0
+          fi
+          git commit -m "Build installable plugin ZIP [skip ci]"
+          git push
