@@ -52,9 +52,59 @@ class BCW_Wedding_Data {
         return $timestamp ? wp_date( 'd · m · Y', $timestamp ) : $date;
     }
 
-    public function hero_image_url( $size = 'full' ) {
-        $id = absint( $this->get( 'bcw_hero_image_id' ) );
+    public function image_url( $meta_key, $size = 'full' ) {
+        $id = absint( $this->get( $meta_key ) );
         return $id ? wp_get_attachment_image_url( $id, $size ) : '';
+    }
+
+    public function hero_image_url( $size = 'full' ) {
+        return $this->image_url( 'bcw_hero_image_id', $size );
+    }
+
+    public function closing_image_url( $size = 'full' ) {
+        return $this->image_url( 'bcw_closing_image_id', $size );
+    }
+
+    public function invitation_image_url( $size = 'full' ) {
+        return $this->image_url( 'bcw_invitation_image_id', $size );
+    }
+
+    public function og_image_url( $size = 'full' ) {
+        return $this->image_url( 'bcw_og_image_id', $size );
+    }
+
+    public function entry_cover_image_url( $size = 'full' ) {
+        return $this->image_url( 'bcw_entry_cover_image_id', $size );
+    }
+
+    public function sections() {
+        $defaults = array(
+            'historia'    => 1,
+            'la-boda'     => 1,
+            'menorca'     => 1,
+            'informacion' => 1,
+            'rsvp'        => 1,
+        );
+
+        $saved = $this->get( 'bcw_sections', $defaults );
+        if ( ! is_array( $saved ) ) {
+            return $defaults;
+        }
+
+        foreach ( $defaults as $key => $default ) {
+            $defaults[ $key ] = ! empty( $saved[ $key ] ) ? 1 : 0;
+        }
+
+        return $defaults;
+    }
+
+    public function section_enabled( $section ) {
+        if ( 'inicio' === $section || 'panel' === $section ) {
+            return true;
+        }
+
+        $sections = $this->sections();
+        return ! empty( $sections[ $section ] );
     }
 
     public function story() {
