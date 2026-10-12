@@ -172,7 +172,7 @@ class BCW_Wedding_Fields {
                 'year'  => 'Año / fecha',
                 'title' => 'Título',
                 'text'  => 'Texto',
-                'image' => 'Imagen ID',
+                'image' => 'Imagen',
             ),
             'Añadir capítulo'
         );
@@ -187,7 +187,7 @@ class BCW_Wedding_Fields {
                 'place'  => 'Espacio',
                 'time'   => 'Hora opcional',
                 'text'   => 'Texto',
-                'image'  => 'Imagen ID',
+                'image'  => 'Imagen',
             ),
             'Añadir momento'
         );
@@ -201,7 +201,7 @@ class BCW_Wedding_Fields {
                 'category' => 'Categoría',
                 'place'    => 'Lugar',
                 'text'     => 'Por qué es especial',
-                'image'    => 'Imagen ID',
+                'image'    => 'Imagen',
                 'url'      => 'Enlace opcional',
             ),
             'Añadir lugar'
@@ -251,8 +251,18 @@ class BCW_Wedding_Fields {
             if ( 'text' === $field_key ) {
                 echo '<textarea rows="3" name="' . esc_attr( $input_name ) . '">' . esc_textarea( $value ) . '</textarea>';
             } elseif ( 'image' === $field_key ) {
-                echo '<input type="number" min="0" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $value ) . '" placeholder="ID de imagen">';
-                echo '<small>En esta primera versión se guarda el ID de la imagen. El selector visual se añadirá antes de instalar en producción.</small>';
+                $image_id  = absint( $value );
+                $image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium' ) : '';
+                echo '<div class="bcw-image-field">';
+                echo '<input class="bcw-image-id" type="hidden" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $image_id ) . '">';
+                echo '<div class="bcw-image-preview">';
+                if ( $image_url ) {
+                    echo '<img src="' . esc_url( $image_url ) . '" alt="">';
+                }
+                echo '</div>';
+                echo '<button type="button" class="button bcw-pick-image">Elegir imagen</button> ';
+                echo '<button type="button" class="button-link-delete bcw-remove-image">Quitar</button>';
+                echo '</div>';
             } else {
                 echo '<input type="text" name="' . esc_attr( $input_name ) . '" value="' . esc_attr( $value ) . '">';
             }
