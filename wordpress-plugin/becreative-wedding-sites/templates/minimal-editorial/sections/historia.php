@@ -12,16 +12,33 @@ if ( ! $rows ) :
 <?php
 else :
     foreach ( $rows as $row ) :
-        $image = ! empty( $row['image'] ) ? wp_get_attachment_image_url( absint( $row['image'] ), 'large' ) : '';
+        $layout = ! empty( $row['layout'] ) && in_array( $row['layout'], array( 'standard', 'feature', 'collage' ), true )
+            ? $row['layout']
+            : 'standard';
+
+        $images = array();
+        foreach ( array( 'image', 'image_2', 'image_3' ) as $image_key ) {
+            if ( ! empty( $row[ $image_key ] ) ) {
+                $url = wp_get_attachment_image_url( absint( $row[ $image_key ] ), 'large' );
+                if ( $url ) {
+                    $images[] = $url;
+                }
+            }
+        }
 ?>
-    <article class="bcw-story-item" data-reveal>
+    <article class="bcw-story-item is-<?php echo esc_attr( $layout ); ?>" data-reveal>
         <div class="bcw-story-copy">
             <?php if ( ! empty( $row['year'] ) ) : ?><span class="bcw-story-year"><?php echo esc_html( $row['year'] ); ?></span><?php endif; ?>
             <?php if ( ! empty( $row['title'] ) ) : ?><h2><?php echo esc_html( $row['title'] ); ?></h2><?php endif; ?>
             <?php if ( ! empty( $row['text'] ) ) : ?><p><?php echo nl2br( esc_html( $row['text'] ) ); ?></p><?php endif; ?>
         </div>
-        <?php if ( $image ) : ?>
-        <div class="bcw-story-image"><img src="<?php echo esc_url( $image ); ?>" alt=""></div>
+
+        <?php if ( $images ) : ?>
+        <div class="bcw-story-gallery">
+            <?php foreach ( $images as $image ) : ?>
+                <img src="<?php echo esc_url( $image ); ?>" alt="">
+            <?php endforeach; ?>
+        </div>
         <?php endif; ?>
     </article>
 <?php
