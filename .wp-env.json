@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/wp-env.json",
+  "phpVersion": "8.2",
+  "plugins": [
+    "./wordpress-plugin/becreative-wedding-sites"
+  ],
+  "config": {
+    "WP_DEBUG": true,
+    "SCRIPT_DEBUG": true
+  }
+}
