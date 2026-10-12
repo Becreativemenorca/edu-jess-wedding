@@ -1,0 +1,20 @@
+name: Plugin PHP Lint
+
+on:
+  push:
+    branches:
+      - wordpress-system
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PHP version
+        run: php -v
+
+      - name: Lint plugin PHP
+        run: find wordpress-plugin/becreative-wedding-sites -type f -name '*.php' -print0 | xargs -0 -n1 php -l
