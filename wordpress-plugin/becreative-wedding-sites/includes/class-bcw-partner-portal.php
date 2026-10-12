@@ -74,7 +74,9 @@ class BCW_Partner_Portal {
     }
 
     public static function keep_couples_out_of_admin() {
-        if ( wp_doing_ajax() ) {
+        global $pagenow;
+
+        if ( wp_doing_ajax() || wp_doing_cron() || 'admin-post.php' === $pagenow ) {
             return;
         }
 
