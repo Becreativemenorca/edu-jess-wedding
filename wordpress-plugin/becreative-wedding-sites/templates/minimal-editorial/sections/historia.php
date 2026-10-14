@@ -1,6 +1,9 @@
 <section class="bcw-page-head" data-reveal>
     <p class="bcw-eyebrow">Nuestra historia</p>
-    <h1 class="bcw-page-title">Todo lo que nos trajo hasta aquí.</h1>
+    <h1 class="bcw-page-title"><?php echo esc_html( $data->get( 'bcw_story_title', 'Todo lo que nos trajo hasta aquí.' ) ); ?></h1>
+    <?php if ( $data->get( 'bcw_story_intro' ) ) : ?>
+        <p><?php echo nl2br( esc_html( $data->get( 'bcw_story_intro' ) ) ); ?></p>
+    <?php endif; ?>
 </section>
 
 <section class="bcw-story-list">
