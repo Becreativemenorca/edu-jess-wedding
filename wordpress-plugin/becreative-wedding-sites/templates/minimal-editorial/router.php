@@ -70,8 +70,11 @@ if ( $show_entry_cover ) :
     <div class="bcw-entry-copy">
         <p class="bcw-eyebrow"><?php echo esc_html( $data->get( 'bcw_location' ) ); ?></p>
         <h1><?php echo esc_html( $names ); ?></h1>
-        <p><?php echo esc_html( $date ); ?></p>
-        <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Entrar</button>
+        <p class="bcw-entry-photo-date"><?php echo esc_html( $date ); ?></p>
+        <?php if ( $data->get( 'bcw_closing' ) ) : ?>
+            <p class="bcw-entry-photo-phrase"><?php echo esc_html( $data->get( 'bcw_closing' ) ); ?></p>
+        <?php endif; ?>
+        <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Abrir invitación</button>
     </div>
 </div>
 <?php
