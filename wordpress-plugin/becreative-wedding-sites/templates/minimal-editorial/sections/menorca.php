@@ -1,7 +1,17 @@
-<section class="bcw-page-head" data-reveal>
+<section class="bcw-page-head bcw-page-head-menorca" data-reveal>
     <p class="bcw-eyebrow">Nuestra Menorca</p>
     <h1 class="bcw-page-title">Menorca, a nuestra manera.</h1>
     <p>Los lugares que forman parte de nuestra historia y que queremos compartir con vosotros.</p>
+    <?php
+    if ( '1' === $data->get( 'bcw_identity_enabled', '0' ) ) :
+        $identity_secondary = $data->image_url( 'bcw_identity_secondary_image_id', 'medium' );
+        if ( $identity_secondary ) :
+    ?>
+        <img class="bcw-identity-mark bcw-identity-secondary" src="<?php echo esc_url( $identity_secondary ); ?>" alt="" aria-hidden="true">
+    <?php
+        endif;
+    endif;
+    ?>
 </section>
 
 <section class="bcw-cards">
