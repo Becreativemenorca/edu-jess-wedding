@@ -30,20 +30,25 @@ const enterButton = document.querySelector('[data-enter-wedding]');
 if (entryCover) {
   const weddingId = entryCover.dataset.weddingId || 'wedding';
   const storageKey = 'bcw-entered-' + weddingId;
+  const previewMode = new URLSearchParams(window.location.search).get('bcw_invitation_preview') === '1';
 
-  try {
-    if (window.sessionStorage.getItem(storageKey) === '1') {
-      entryCover.remove();
+  if (!previewMode) {
+    try {
+      if (window.sessionStorage.getItem(storageKey) === '1') {
+        entryCover.remove();
+      }
+    } catch (e) {
+      // If storage is unavailable, the cover simply appears again on refresh.
     }
-  } catch (e) {
-    // If storage is unavailable, the cover simply appears again on refresh.
   }
 
   if (enterButton && document.body.contains(entryCover)) {
     enterButton.addEventListener('click', () => {
-      try {
-        window.sessionStorage.setItem(storageKey, '1');
-      } catch (e) {}
+      if (!previewMode) {
+        try {
+          window.sessionStorage.setItem(storageKey, '1');
+        } catch (e) {}
+      }
 
       entryCover.classList.add('is-leaving');
       window.setTimeout(() => entryCover.remove(), 550);
