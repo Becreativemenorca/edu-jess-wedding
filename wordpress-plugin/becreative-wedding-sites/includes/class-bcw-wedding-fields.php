@@ -48,6 +48,7 @@ class BCW_Wedding_Fields {
         add_meta_box( 'bcw-wedding-day', 'La boda', array( __CLASS__, 'render_wedding_day' ), BCW_Wedding_Post_Type::POST_TYPE, 'normal', 'default' );
         add_meta_box( 'bcw-menorca', 'Destino / Nuestra Menorca', array( __CLASS__, 'render_menorca' ), BCW_Wedding_Post_Type::POST_TYPE, 'normal', 'default' );
         add_meta_box( 'bcw-information', 'Información práctica', array( __CLASS__, 'render_information' ), BCW_Wedding_Post_Type::POST_TYPE, 'normal', 'default' );
+        add_meta_box( 'bcw-identity', 'Identidad visual', array( __CLASS__, 'render_identity' ), BCW_Wedding_Post_Type::POST_TYPE, 'normal', 'default' );
         add_meta_box( 'bcw-invitation', 'Invitación digital', array( __CLASS__, 'render_invitation' ), BCW_Wedding_Post_Type::POST_TYPE, 'normal', 'default' );
         add_meta_box( 'bcw-rsvp', 'RSVP', array( __CLASS__, 'render_rsvp' ), BCW_Wedding_Post_Type::POST_TYPE, 'side', 'default' );
         add_meta_box( 'bcw-portal', 'Acceso de los novios', array( __CLASS__, 'render_portal' ), BCW_Wedding_Post_Type::POST_TYPE, 'side', 'default' );
@@ -275,6 +276,17 @@ class BCW_Wedding_Fields {
         echo '</div>';
     }
 
+    public static function render_identity( $post ) {
+        $enabled = '1' === self::value( $post->ID, 'bcw_identity_enabled', '0' );
+
+        echo '<div class="bcw-grid">';
+        echo '<label class="bcw-field"><span><input type="checkbox" name="bcw_identity_enabled" value="1"' . checked( $enabled, true, false ) . '> Activar identidad visual para esta boda</span></label>';
+        echo '<div class="bcw-field"><span>Cómo se usa</span><p class="description">El símbolo principal aparece de forma sutil al inicio de Nuestra historia. El detalle secundario aparece en Nuestra Menorca. Recomendado: PNG sin fondo y trazos limpios.</p></div>';
+        self::image_picker( 'bcw_identity_primary_image_id', 'Símbolo principal (ej. Faro de Cavalleria)', absint( self::value( $post->ID, 'bcw_identity_primary_image_id' ) ) );
+        self::image_picker( 'bcw_identity_secondary_image_id', 'Detalle secundario (ej. alcaparra)', absint( self::value( $post->ID, 'bcw_identity_secondary_image_id' ) ) );
+        echo '</div>';
+    }
+
     public static function render_invitation( $post ) {
         $enabled = '1' === self::value( $post->ID, 'bcw_invitation_enabled', '0' );
         $cover   = '1' === self::value( $post->ID, 'bcw_entry_cover_enabled', '0' );
@@ -385,6 +397,8 @@ class BCW_Wedding_Fields {
             'bcw_invitation_image_id',
             'bcw_og_image_id',
             'bcw_entry_cover_image_id',
+            'bcw_identity_primary_image_id',
+            'bcw_identity_secondary_image_id',
         );
 
         foreach ( $image_fields as $key ) {
@@ -396,6 +410,7 @@ class BCW_Wedding_Fields {
             'bcw_portal_enabled',
             'bcw_invitation_enabled',
             'bcw_entry_cover_enabled',
+            'bcw_identity_enabled',
         );
 
         foreach ( $toggle_fields as $key ) {
