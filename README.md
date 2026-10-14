@@ -96,3 +96,6 @@ Experiencia multipágina:
 ## Estado
 
 Versión 0.3.x de desarrollo. Preparada para la primera prueba controlada antes de instalarla en la web de producción.
+
+
+Pruebas automáticas de integración: WordPress aislado con wp-env.
