@@ -15,14 +15,14 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-hero{min-height:calc(100svh - 70px);position:relative;display:flex;align-items:flex-end;color:white}
 .bcw-hero img,.bcw-hero-shade{position:absolute;inset:0}.bcw-hero-shade{background:linear-gradient(90deg,rgba(28,22,18,.52),rgba(28,22,18,.08))}
 .bcw-hero-copy{position:relative;z-index:2;padding:80px 7vw 9vw;max-width:1100px}
-.bcw-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase}.bcw-hero h1,.bcw-page-title{font:400 clamp(62px,12vw,150px)/.82 'Cormorant Garamond',serif;letter-spacing:-.045em;margin:12px 0 22px}.bcw-hero h1 em{font-weight:400;color:#dbc5b3}
+.bcw-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase}.bcw-hero h1{font:400 clamp(52px,8vw,108px)/.9 'Cormorant Garamond',serif;letter-spacing:-.04em;margin:12px 0 22px}.bcw-page-title{font:400 clamp(44px,6.5vw,88px)/.94 'Cormorant Garamond',serif;letter-spacing:-.035em;margin:12px 0 22px}.bcw-hero h1 em{font-weight:400;color:#dbc5b3}
 .bcw-date{font-size:13px;letter-spacing:.18em}.bcw-tagline{font:400 24px/1.35 'Cormorant Garamond',serif;max-width:520px}
-.bcw-intro{padding:90px 8vw;max-width:1200px;margin:auto}.bcw-intro p{font:400 clamp(34px,6vw,72px)/1.05 'Cormorant Garamond',serif;margin:0}
+.bcw-intro{padding:90px 8vw;max-width:1200px;margin:auto}.bcw-intro p{font:400 clamp(30px,4.2vw,50px)/1.12 'Cormorant Garamond',serif;margin:0}
 .bcw-page-head{max-width:1280px;margin:auto;padding:90px 6vw 55px}.bcw-page-head p{max-width:650px;line-height:1.8}
 .bcw-story-list,.bcw-cards,.bcw-info-list{max-width:1280px;margin:auto;padding:0 6vw 100px}
-.bcw-story-item{display:grid;gap:34px;padding:65px 0;border-top:1px solid var(--bcw-line)}.bcw-story-copy{max-width:650px}.bcw-story-year{font-size:10px;letter-spacing:.18em}.bcw-story-item h2,.bcw-card h2,.bcw-info-item h2{font:400 clamp(34px,5vw,64px)/1 'Cormorant Garamond',serif;margin:10px 0 20px}.bcw-story-item p,.bcw-card p,.bcw-info-item p{line-height:1.8}.bcw-story-image{min-height:430px;max-height:760px}
+.bcw-story-item{display:grid;gap:34px;padding:65px 0;border-top:1px solid var(--bcw-line)}.bcw-story-copy{max-width:650px}.bcw-story-year{font-size:10px;letter-spacing:.18em}.bcw-story-item h2,.bcw-card h2,.bcw-info-item h2{font:400 clamp(30px,3.8vw,46px)/1.05 'Cormorant Garamond',serif;margin:10px 0 20px}.bcw-story-item p,.bcw-card p,.bcw-info-item p{line-height:1.8}.bcw-story-image{min-height:430px;max-height:760px}
 .bcw-cards{display:grid;gap:28px}.bcw-card{padding:0 0 36px;border-bottom:1px solid var(--bcw-line)}.bcw-card-image{aspect-ratio:4/3;margin-bottom:22px}.bcw-card-meta{font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-.bcw-info-item{padding:34px 0;border-top:1px solid var(--bcw-line);display:grid;grid-template-columns:50px 1fr;gap:20px}.bcw-info-item h2{font-size:38px;margin-top:0}
+.bcw-info-item{padding:34px 0;border-top:1px solid var(--bcw-line);display:grid;grid-template-columns:50px 1fr;gap:20px}.bcw-info-item h2{font-size:clamp(28px,3vw,36px);margin-top:0}
 .bcw-empty{max-width:900px;margin:auto;padding:80px 6vw 120px;line-height:1.8}
 .bcw-rsvp-box{max-width:760px;margin:0 auto;padding:0 6vw 120px}.bcw-rsvp-box form{display:grid;gap:20px}.bcw-rsvp-box input,.bcw-rsvp-box textarea{width:100%;border:0;border-bottom:1px solid var(--bcw-ink);background:transparent;padding:13px 0}.bcw-button{display:inline-block;border:1px solid currentColor;background:transparent;padding:13px 18px}
 .bcw-footer{padding:70px 6vw;text-align:center;border-top:1px solid var(--bcw-line)}.bcw-footer strong{font:400 32px 'Cormorant Garamond',serif}.bcw-footer p{font-size:11px;letter-spacing:.14em}
@@ -35,7 +35,7 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-entry-cover>img,.bcw-entry-shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bcw-entry-shade{background:linear-gradient(180deg,rgba(20,16,13,.08),rgba(20,16,13,.62))}
 .bcw-entry-copy{position:relative;z-index:2;text-align:center;padding:70px 7vw 9vh}
-.bcw-entry-copy h1{font:400 clamp(58px,12vw,140px)/.85 'Cormorant Garamond',serif;letter-spacing:-.045em;margin:12px 0 16px}
+.bcw-entry-copy h1{font:400 clamp(48px,8vw,96px)/.92 'Cormorant Garamond',serif;letter-spacing:-.04em;margin:12px 0 16px}
 .bcw-entry-copy p{letter-spacing:.15em}
 .bcw-entry-button{margin-top:22px;color:#fff;cursor:pointer}
 .bcw-entry-cover.is-leaving{opacity:0;visibility:hidden}
@@ -45,7 +45,7 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-story-gallery img{aspect-ratio:4/5}
 .bcw-story-item.is-feature{grid-template-columns:1fr}
 .bcw-story-item.is-feature .bcw-story-copy{max-width:820px}
-.bcw-story-item.is-feature .bcw-story-copy h2{font-size:clamp(48px,8vw,100px)}
+.bcw-story-item.is-feature .bcw-story-copy h2{font-size:clamp(38px,5.5vw,68px)}
 .bcw-story-item.is-collage .bcw-story-gallery{grid-template-columns:1.2fr .8fr}
 .bcw-story-item.is-collage .bcw-story-gallery img:first-child{grid-row:span 2;aspect-ratio:auto}
 .bcw-story-item.is-collage .bcw-story-gallery img:not(:first-child){aspect-ratio:1/1}
@@ -66,7 +66,7 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-closing img,.bcw-closing:after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bcw-closing:after{content:"";background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55))}
 .bcw-closing-copy{position:relative;z-index:2;padding:70px 7vw 9vh}
-.bcw-closing-copy h2{font:400 clamp(40px,7vw,82px)/1 'Cormorant Garamond',serif;margin:10px 0}
+.bcw-closing-copy h2{font:400 clamp(34px,4.8vw,58px)/1.05 'Cormorant Garamond',serif;margin:10px 0}
 
 /* Couple portal */
 .bcw-portal-login,.bcw-portal{max-width:1200px;margin:0 auto;padding:0 6vw 120px}
