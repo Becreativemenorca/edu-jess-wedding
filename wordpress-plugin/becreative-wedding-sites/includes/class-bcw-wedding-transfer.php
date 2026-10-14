@@ -394,7 +394,7 @@ class BCW_Wedding_Transfer {
             'post_type'   => BCW_Wedding_Post_Type::POST_TYPE,
             'post_title'  => sanitize_text_field( $wedding['title'] ?? 'Boda importada' ),
             'post_name'   => sanitize_title( $wedding['slug'] ?? '' ),
-            'post_status' => 'draft',
+            'post_status' => $post_id ? get_post_status( $post_id ) : 'draft',
         );
 
         if ( $post_id ) {
