@@ -14,6 +14,8 @@ class BCW_Wedding_Transfer {
         'bcw_invitation_image_id',
         'bcw_og_image_id',
         'bcw_entry_cover_image_id',
+        'bcw_identity_primary_image_id',
+        'bcw_identity_secondary_image_id',
     );
 
     private static $repeater_image_fields = array(
