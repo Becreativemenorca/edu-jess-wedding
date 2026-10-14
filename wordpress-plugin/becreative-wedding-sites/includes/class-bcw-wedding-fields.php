@@ -149,6 +149,14 @@ class BCW_Wedding_Fields {
     }
 
     public static function render_story( $post ) {
+        $story_title = self::value( $post->ID, 'bcw_story_title', 'Todo lo que nos trajo hasta aquí.' );
+        $story_intro = self::value( $post->ID, 'bcw_story_intro' );
+
+        echo '<div class="bcw-grid" style="margin-bottom:24px">';
+        echo '<label class="bcw-field"><span>Título de “Nuestra historia”</span><input type="text" name="bcw_story_title" value="' . esc_attr( $story_title ) . '"></label>';
+        echo '<label class="bcw-field"><span>Introducción de “Nuestra historia”</span><textarea name="bcw_story_intro" rows="4">' . esc_textarea( $story_intro ) . '</textarea></label>';
+        echo '</div>';
+
         self::render_repeater(
             'bcw_story',
             self::rows( $post->ID, 'bcw_story' ),
@@ -347,6 +355,7 @@ class BCW_Wedding_Fields {
             'bcw_venue',
             'bcw_location',
             'bcw_tagline',
+            'bcw_story_title',
             'bcw_closing',
             'bcw_template',
             'bcw_rsvp_deadline',
@@ -364,6 +373,10 @@ class BCW_Wedding_Fields {
 
         if ( isset( $_POST['bcw_intro'] ) ) {
             update_post_meta( $post_id, 'bcw_intro', sanitize_textarea_field( wp_unslash( $_POST['bcw_intro'] ) ) );
+        }
+
+        if ( isset( $_POST['bcw_story_intro'] ) ) {
+            update_post_meta( $post_id, 'bcw_story_intro', sanitize_textarea_field( wp_unslash( $_POST['bcw_story_intro'] ) ) );
         }
 
         $image_fields = array(
