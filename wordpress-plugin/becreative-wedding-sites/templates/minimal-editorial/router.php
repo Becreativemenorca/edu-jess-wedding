@@ -47,12 +47,15 @@ $show_entry_cover = (
 );
 
 if ( $show_entry_cover ) :
-    $entry_image = $data->entry_cover_image_url( 'full' );
-    if ( ! $entry_image ) {
-        $entry_image = $data->hero_image_url( 'full' );
-    }
+    $entry_style = $data->get( 'bcw_entry_cover_style', 'editorial' );
+
+    if ( 'photo' === $entry_style ) :
+        $entry_image = $data->entry_cover_image_url( 'full' );
+        if ( ! $entry_image ) {
+            $entry_image = $data->hero_image_url( 'full' );
+        }
 ?>
-<div class="bcw-entry-cover" data-entry-cover data-wedding-id="<?php echo esc_attr( $post_id ); ?>">
+<div class="bcw-entry-cover bcw-entry-cover-photo" data-entry-cover data-wedding-id="<?php echo esc_attr( $post_id ); ?>">
     <?php if ( $entry_image ) : ?>
         <img src="<?php echo esc_url( $entry_image ); ?>" alt="">
     <?php endif; ?>
@@ -64,7 +67,35 @@ if ( $show_entry_cover ) :
         <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Entrar</button>
     </div>
 </div>
-<?php endif; ?>
+<?php
+    else :
+        $identity_primary   = '1' === $data->get( 'bcw_identity_enabled', '0' ) ? $data->image_url( 'bcw_identity_primary_image_id', 'medium' ) : '';
+        $identity_secondary = '1' === $data->get( 'bcw_identity_enabled', '0' ) ? $data->image_url( 'bcw_identity_secondary_image_id', 'medium' ) : '';
+?>
+<div class="bcw-entry-cover bcw-entry-cover-editorial" data-entry-cover data-wedding-id="<?php echo esc_attr( $post_id ); ?>">
+    <div class="bcw-entry-editorial-inner">
+        <?php if ( $identity_secondary ) : ?>
+            <img class="bcw-entry-botanical" src="<?php echo esc_url( $identity_secondary ); ?>" alt="" aria-hidden="true">
+        <?php endif; ?>
+
+        <div class="bcw-entry-editorial-copy">
+            <p class="bcw-eyebrow"><?php echo esc_html( $data->get( 'bcw_location' ) ); ?></p>
+            <h1><?php echo esc_html( $names ); ?></h1>
+            <span class="bcw-entry-divider" aria-hidden="true"></span>
+            <p class="bcw-entry-date"><?php echo esc_html( $date ); ?></p>
+
+            <?php if ( $identity_primary ) : ?>
+                <img class="bcw-entry-lighthouse" src="<?php echo esc_url( $identity_primary ); ?>" alt="" aria-hidden="true">
+            <?php endif; ?>
+
+            <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Entrar</button>
+        </div>
+    </div>
+</div>
+<?php
+    endif;
+endif;
+?>
 
 <header class="bcw-header">
     <a class="bcw-brand" href="<?php echo esc_url( BCW_Wedding_Router::url( $post_id ) ); ?>">
