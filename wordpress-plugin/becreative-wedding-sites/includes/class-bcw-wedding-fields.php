@@ -301,7 +301,8 @@ class BCW_Wedding_Fields {
         echo '<option value="photo"' . selected( $style, 'photo', false ) . '>Fotográfica</option>';
         echo '</select></label>';
 
-        echo '<div class="bcw-field"><span>Flujo recomendado</span><p class="description">Envía solo el enlace por WhatsApp. La vista previa del enlace funciona como invitación y, al abrirla, la misma identidad continúa en la portada de entrada de la web.</p></div>';
+        $preview_url = add_query_arg( 'bcw_invitation_preview', '1', BCW_Wedding_Router::url( $post->ID ) );
+        echo '<div class="bcw-field"><span>Flujo recomendado</span><p class="description">Envía solo el enlace por WhatsApp. La vista previa del enlace funciona como invitación y, al abrirla, la misma identidad continúa en la portada de entrada de la web.</p><p><a class="button button-secondary" href="' . esc_url( $preview_url ) . '" target="_blank" rel="noopener">Previsualizar invitación</a></p></div>';
 
         self::image_picker( 'bcw_invitation_image_id', 'Imagen de invitación para compartir (opcional)', absint( self::value( $post->ID, 'bcw_invitation_image_id' ) ) );
         self::image_picker( 'bcw_og_image_id', 'Vista previa de WhatsApp / enlace (1200 × 630)', absint( self::value( $post->ID, 'bcw_og_image_id' ) ) );
