@@ -40,10 +40,17 @@ if ( ! $data->section_enabled( $section ) ) {
 <?php wp_body_open(); ?>
 
 <?php
+$entry_cover_preview = isset( $_GET['bcw_invitation_preview'] ) && '1' === sanitize_text_field( wp_unslash( $_GET['bcw_invitation_preview'] ) );
+
 $show_entry_cover = (
     'inicio' === $section
-    && '1' === $data->get( 'bcw_invitation_enabled', '0' )
-    && '1' === $data->get( 'bcw_entry_cover_enabled', '0' )
+    && (
+        $entry_cover_preview
+        || (
+            '1' === $data->get( 'bcw_invitation_enabled', '0' )
+            && '1' === $data->get( 'bcw_entry_cover_enabled', '0' )
+        )
+    )
 );
 
 if ( $show_entry_cover ) :
