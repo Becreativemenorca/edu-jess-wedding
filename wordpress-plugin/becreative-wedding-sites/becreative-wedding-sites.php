@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BeCreative Wedding Sites
  * Description: Sistema reutilizable para crear y gestionar webs de boda de Be Creative Weddings.
- * Version: 0.3.2
+ * Version: 0.4.0
  * Author: BeCreative Weddings
  * Text Domain: bcw-wedding-sites
  */
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BCW_WEDDING_SITES_VERSION', '0.3.2' );
+define( 'BCW_WEDDING_SITES_VERSION', '0.4.0' );
 define( 'BCW_WEDDING_SITES_FILE', __FILE__ );
 define( 'BCW_WEDDING_SITES_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BCW_WEDDING_SITES_URL', plugin_dir_url( __FILE__ ) );
@@ -24,6 +24,7 @@ require_once BCW_WEDDING_SITES_DIR . 'includes/class-bcw-rsvp.php';
 require_once BCW_WEDDING_SITES_DIR . 'includes/class-bcw-partner-portal.php';
 require_once BCW_WEDDING_SITES_DIR . 'includes/class-bcw-sharing.php';
 require_once BCW_WEDDING_SITES_DIR . 'includes/class-bcw-rsvp-admin.php';
+require_once BCW_WEDDING_SITES_DIR . 'includes/class-bcw-wedding-transfer.php';
 
 function bcw_wedding_sites_register_post_type() {
     BCW_Wedding_Post_Type::register();
@@ -36,6 +37,7 @@ BCW_RSVP::init();
 BCW_Partner_Portal::init();
 BCW_Sharing::init();
 BCW_RSVP_Admin::init();
+BCW_Wedding_Transfer::init();
 
 function bcw_wedding_sites_activate() {
     BCW_Wedding_Post_Type::register();
