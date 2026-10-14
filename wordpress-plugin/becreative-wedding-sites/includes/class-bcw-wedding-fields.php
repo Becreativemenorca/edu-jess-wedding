@@ -290,16 +290,24 @@ class BCW_Wedding_Fields {
     public static function render_invitation( $post ) {
         $enabled = '1' === self::value( $post->ID, 'bcw_invitation_enabled', '0' );
         $cover   = '1' === self::value( $post->ID, 'bcw_entry_cover_enabled', '0' );
+        $style   = self::value( $post->ID, 'bcw_entry_cover_style', 'editorial' );
 
         echo '<div class="bcw-grid">';
         echo '<label class="bcw-field"><span><input type="checkbox" name="bcw_invitation_enabled" value="1"' . checked( $enabled, true, false ) . '> Activar invitación digital para esta boda</span></label>';
         echo '<label class="bcw-field"><span><input type="checkbox" name="bcw_entry_cover_enabled" value="1"' . checked( $cover, true, false ) . '> Mostrar portada de entrada antes de la web</span></label>';
 
-        self::image_picker( 'bcw_invitation_image_id', 'Imagen de invitación para compartir', absint( self::value( $post->ID, 'bcw_invitation_image_id' ) ) );
-        self::image_picker( 'bcw_og_image_id', 'Imagen de vista previa al compartir enlace', absint( self::value( $post->ID, 'bcw_og_image_id' ) ) );
-        self::image_picker( 'bcw_entry_cover_image_id', 'Imagen de portada de entrada', absint( self::value( $post->ID, 'bcw_entry_cover_image_id' ) ) );
+        echo '<label class="bcw-field"><span>Estilo de la portada de entrada</span><select name="bcw_entry_cover_style">';
+        echo '<option value="editorial"' . selected( $style, 'editorial', false ) . '>Editorial minimalista</option>';
+        echo '<option value="photo"' . selected( $style, 'photo', false ) . '>Fotográfica</option>';
+        echo '</select></label>';
+
+        echo '<div class="bcw-field"><span>Flujo recomendado</span><p class="description">Envía solo el enlace por WhatsApp. La vista previa del enlace funciona como invitación y, al abrirla, la misma identidad continúa en la portada de entrada de la web.</p></div>';
+
+        self::image_picker( 'bcw_invitation_image_id', 'Imagen de invitación para compartir (opcional)', absint( self::value( $post->ID, 'bcw_invitation_image_id' ) ) );
+        self::image_picker( 'bcw_og_image_id', 'Vista previa de WhatsApp / enlace (1200 × 630)', absint( self::value( $post->ID, 'bcw_og_image_id' ) ) );
+        self::image_picker( 'bcw_entry_cover_image_id', 'Imagen de fondo de portada (solo estilo fotográfico)', absint( self::value( $post->ID, 'bcw_entry_cover_image_id' ) ) );
         echo '</div>';
-        echo '<p class="description">Estas opciones son por boda. Si no se activan, la web funciona normalmente sin invitación ni portada previa.</p>';
+        echo '<p class="description">La portada editorial usa automáticamente los nombres, Menorca, la fecha y los elementos de Identidad visual. No necesita una imagen de fondo.</p>';
     }
 
     public static function render_rsvp( $post ) {
@@ -371,6 +379,7 @@ class BCW_Wedding_Fields {
             'bcw_closing',
             'bcw_template',
             'bcw_rsvp_deadline',
+            'bcw_entry_cover_style',
             'bcw_portal_email',
         );
 
@@ -379,6 +388,11 @@ class BCW_Wedding_Fields {
                 $value = 'bcw_portal_email' === $key
                     ? sanitize_email( wp_unslash( $_POST[ $key ] ) )
                     : sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
+
+                if ( 'bcw_entry_cover_style' === $key && ! in_array( $value, array( 'editorial', 'photo' ), true ) ) {
+                    $value = 'editorial';
+                }
+
                 update_post_meta( $post_id, $key, $value );
             }
         }
