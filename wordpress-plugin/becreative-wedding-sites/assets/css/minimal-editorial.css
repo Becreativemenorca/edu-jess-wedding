@@ -41,14 +41,34 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.bcw-js [data-reveal]{opacity:1!important;transform:none!important}}
 
 /* Optional invitation cover */
-.bcw-entry-cover{position:fixed;inset:0;z-index:5000;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:#fff;background:#1f1b18;transition:opacity .5s ease,visibility .5s ease}
-.bcw-entry-cover>img,.bcw-entry-shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bcw-entry-cover{position:fixed;inset:0;z-index:5000;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
+.bcw-entry-cover-photo{color:#fff;background:#1f1b18}
+.bcw-entry-cover-photo>img,.bcw-entry-shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bcw-entry-shade{background:linear-gradient(180deg,rgba(20,16,13,.08),rgba(20,16,13,.62))}
 .bcw-entry-copy{position:relative;z-index:2;text-align:center;padding:70px 7vw 9vh}
 .bcw-entry-copy h1{font:400 clamp(48px,8vw,96px)/.92 'Cormorant Garamond',serif;letter-spacing:-.04em;margin:12px 0 16px}
 .bcw-entry-copy p{letter-spacing:.15em}
-.bcw-entry-button{margin-top:22px;color:#fff;cursor:pointer}
+.bcw-entry-button{margin-top:22px;cursor:pointer}
+.bcw-entry-cover-photo .bcw-entry-button{color:#fff}
 .bcw-entry-cover.is-leaving{opacity:0;visibility:hidden}
+
+.bcw-entry-cover-editorial{align-items:stretch;background:var(--bcw-cream-2);color:var(--bcw-ink)}
+.bcw-entry-editorial-inner{position:relative;width:100%;min-height:100%;display:flex;align-items:center;justify-content:center;padding:50px 7vw;overflow:hidden}
+.bcw-entry-editorial-copy{position:relative;z-index:2;text-align:center;max-width:760px;margin:auto}
+.bcw-entry-editorial-copy .bcw-eyebrow{margin:0 0 22px;letter-spacing:.26em}
+.bcw-entry-editorial-copy h1{font:400 clamp(58px,10vw,118px)/.9 'Cormorant Garamond',serif;letter-spacing:-.045em;margin:0}
+.bcw-entry-divider{display:block;width:54px;height:1px;background:var(--bcw-line);margin:28px auto 22px}
+.bcw-entry-date{font:400 18px/1.3 'Cormorant Garamond',serif;letter-spacing:.22em;margin:0}
+.bcw-entry-lighthouse{display:block!important;width:clamp(135px,18vw,220px)!important;height:auto!important;object-fit:contain!important;margin:34px auto 0;opacity:.56;mix-blend-mode:multiply}
+.bcw-entry-botanical{position:absolute!important;top:-34px;right:-38px;width:clamp(150px,24vw,300px)!important;height:auto!important;object-fit:contain!important;opacity:.14;mix-blend-mode:multiply;pointer-events:none}
+.bcw-entry-cover-editorial .bcw-entry-button{color:var(--bcw-ink);margin-top:34px;min-width:116px;background:transparent}
+.bcw-entry-cover-editorial .bcw-entry-button:hover{background:var(--bcw-ink);color:var(--bcw-white)}
+@media(max-width:640px){
+  .bcw-entry-editorial-inner{padding:42px 8vw}
+  .bcw-entry-botanical{top:-18px;right:-54px;width:190px!important;opacity:.11}
+  .bcw-entry-lighthouse{width:145px!important;margin-top:28px}
+  .bcw-entry-cover-editorial .bcw-entry-button{margin-top:30px}
+}
 
 /* Story layouts */
 .bcw-story-gallery{display:grid;gap:10px;min-height:430px}
