@@ -127,6 +127,68 @@ jobs:
           echo "RSVP OK\n";
           '
 
+      - name: Test wedding export and import
+        run: |
+          wp-env run cli wp eval '
+          $w = get_page_by_path("edu-jess-test", OBJECT, "bcw_wedding");
+          if ( ! $w ) { fwrite(STDERR, "Wedding missing before transfer test\n"); exit(1); }
+
+          update_post_meta($w->ID, "bcw_portal_enabled", "1");
+          update_post_meta($w->ID, "bcw_portal_email", "couple@example.com");
+
+          $png = base64_decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=");
+          $upload = wp_upload_bits("bcw-transfer-test.png", null, $png);
+          if ( ! empty($upload["error"]) ) { fwrite(STDERR, $upload["error"] . "\n"); exit(1); }
+
+          $attachment_id = wp_insert_attachment(
+            array(
+              "post_mime_type" => "image/png",
+              "post_title" => "BCW transfer test",
+              "post_status" => "inherit"
+            ),
+            $upload["file"],
+            $w->ID
+          );
+          require_once ABSPATH . "wp-admin/includes/image.php";
+          $metadata = wp_generate_attachment_metadata($attachment_id, $upload["file"]);
+          wp_update_attachment_metadata($attachment_id, $metadata);
+          update_post_meta($w->ID, "bcw_hero_image_id", $attachment_id);
+
+          $package = BCW_Wedding_Transfer::build_export_archive($w->ID);
+          if ( is_wp_error($package) ) { fwrite(STDERR, $package->get_error_message() . "\n"); exit(1); }
+          if ( empty($package["path"]) || ! file_exists($package["path"]) ) { fwrite(STDERR, "Export ZIP missing\n"); exit(1); }
+
+          $zip_copy = sys_get_temp_dir() . "/bcw-integration-export.zip";
+          if ( ! copy($package["path"], $zip_copy) ) { fwrite(STDERR, "Could not copy export ZIP\n"); exit(1); }
+          @unlink($package["path"]);
+
+          $old_id = $w->ID;
+          wp_delete_post($old_id, true);
+
+          $new_id = BCW_Wedding_Transfer::import_archive($zip_copy, true);
+          @unlink($zip_copy);
+
+          if ( is_wp_error($new_id) ) { fwrite(STDERR, $new_id->get_error_message() . "\n"); exit(1); }
+          if ( "Edu" !== get_post_meta($new_id, "bcw_partner_1", true) ) { fwrite(STDERR, "Imported partner missing\n"); exit(1); }
+          if ( "Llucasaldent Gran" !== get_post_meta($new_id, "bcw_venue", true) ) { fwrite(STDERR, "Imported venue missing\n"); exit(1); }
+
+          $story = get_post_meta($new_id, "bcw_story", true);
+          if ( empty($story[0]["title"]) || "Éramos dos. Volvimos siendo tres." !== $story[0]["title"] ) {
+            fwrite(STDERR, "Imported story missing\n"); exit(1);
+          }
+
+          $new_hero = (int) get_post_meta($new_id, "bcw_hero_image_id", true);
+          if ( ! $new_hero || ! file_exists(get_attached_file($new_hero)) ) { fwrite(STDERR, "Imported image missing\n"); exit(1); }
+
+          if ( get_post_meta($new_id, "bcw_portal_email", true) ) { fwrite(STDERR, "Private portal email should not be exported\n"); exit(1); }
+          if ( "1" === get_post_meta($new_id, "bcw_portal_enabled", true) ) { fwrite(STDERR, "Private portal should be disabled after import\n"); exit(1); }
+
+          $stats = BCW_RSVP::stats($new_id);
+          if ( 0 !== (int) $stats["total"] ) { fwrite(STDERR, "RSVP responses should not be transferred\n"); exit(1); }
+
+          echo "Wedding transfer OK\n";
+          '
+
       - name: Stop environment
         if: always()
         run: wp-env stop
