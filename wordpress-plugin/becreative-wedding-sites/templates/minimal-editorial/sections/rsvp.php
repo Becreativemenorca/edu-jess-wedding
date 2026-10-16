@@ -16,9 +16,9 @@ if ( $closing_image || $closing_text ) :
 ?>
 <section class="bcw-closing" data-reveal>
     <?php if ( $closing_image ) : ?><img src="<?php echo esc_url( $closing_image ); ?>" alt=""><?php endif; ?>
-    <div class="bcw-closing-copy">
-        <p class="bcw-eyebrow"><?php echo esc_html( trim( $data->get( 'bcw_location' ) . ( $date ? ' · ' . $date : '' ) ) ); ?></p>
-        <?php if ( $closing_text ) : ?><h2><?php echo esc_html( $closing_text ); ?></h2><?php endif; ?>
+    <div class="bcw-closing-copy" style="color:#fff!important;-webkit-text-fill-color:#fff!important;">
+        <p class="bcw-eyebrow" style="color:#fff!important;-webkit-text-fill-color:#fff!important;"><?php echo esc_html( trim( $data->get( 'bcw_location' ) . ( $date ? ' · ' . $date : '' ) ) ); ?></p>
+        <?php if ( $closing_text ) : ?><h2 style="color:#fff!important;-webkit-text-fill-color:#fff!important;"><?php echo esc_html( $closing_text ); ?></h2><?php endif; ?>
     </div>
 </section>
 <?php endif; ?>
