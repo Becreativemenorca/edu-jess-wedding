@@ -338,7 +338,14 @@ body.bcw-wedding .floating-wpp,
 body.bcw-wedding .wa__btn_popup,
 body.bcw-wedding .whatsapp_float,
 body.bcw-wedding .whatsapp-button,
+body.bcw-wedding .chaty-widget,
+body.bcw-wedding .chaty-widget-i,
+body.bcw-wedding #chaty-widget,
 body.bcw-wedding [class*="whatsapp-widget"],
-body.bcw-wedding [id*="whatsapp-widget"]{
+body.bcw-wedding [id*="whatsapp-widget"],
+body.bcw-wedding a[href*="wa.me"],
+body.bcw-wedding a[href*="api.whatsapp.com"],
+body.bcw-wedding a[href*="whatsapp.com/send"],
+body.bcw-wedding iframe[src*="whatsapp"]{
   display:none!important;
 }
