@@ -10,6 +10,9 @@ class BCW_Sharing {
         add_filter( 'wpseo_opengraph_title', array( __CLASS__, 'yoast_title' ) );
         add_filter( 'wpseo_opengraph_desc', array( __CLASS__, 'yoast_description' ) );
         add_filter( 'wpseo_opengraph_image', array( __CLASS__, 'yoast_image' ) );
+        add_filter( 'wp_robots', array( __CLASS__, 'robots_noindex' ) );
+        add_filter( 'wp_sitemaps_post_types', array( __CLASS__, 'exclude_from_core_sitemap' ) );
+        add_filter( 'wpseo_sitemap_exclude_post_type', array( __CLASS__, 'exclude_from_yoast_sitemap' ), 10, 2 );
         add_action( 'wp_head', array( __CLASS__, 'fallback_open_graph' ), 4 );
     }
 
@@ -51,6 +54,28 @@ class BCW_Sharing {
         }
 
         return $custom ? $custom : $image;
+    }
+
+    public static function robots_noindex( $robots ) {
+        if ( is_singular( BCW_Wedding_Post_Type::POST_TYPE ) ) {
+            $robots['noindex'] = true;
+            unset( $robots['index'] );
+        }
+
+        return $robots;
+    }
+
+    public static function exclude_from_core_sitemap( $post_types ) {
+        unset( $post_types[ BCW_Wedding_Post_Type::POST_TYPE ] );
+        return $post_types;
+    }
+
+    public static function exclude_from_yoast_sitemap( $excluded, $post_type ) {
+        if ( BCW_Wedding_Post_Type::POST_TYPE === $post_type ) {
+            return true;
+        }
+
+        return $excluded;
     }
 
     public static function fallback_open_graph() {
