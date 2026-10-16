@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BeCreative Wedding Sites
  * Description: Sistema reutilizable para crear y gestionar webs de boda de Be Creative Weddings.
- * Version: 0.5.9
+ * Version: 0.6.0
  * Author: BeCreative Weddings
  * Text Domain: bcw-wedding-sites
  */
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'BCW_WEDDING_SITES_VERSION', '0.5.9' );
+define( 'BCW_WEDDING_SITES_VERSION', '0.6.0' );
 define( 'BCW_WEDDING_SITES_FILE', __FILE__ );
 define( 'BCW_WEDDING_SITES_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BCW_WEDDING_SITES_URL', plugin_dir_url( __FILE__ ) );
