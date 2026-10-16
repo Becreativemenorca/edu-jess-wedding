@@ -1161,3 +1161,40 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item:not(.is-collage)
     grid-column:1 / -1!important;
   }
 }
+
+
+/* Four-photo story chapters: balanced 2x2 layout across browsers */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage.has-4-images .bcw-story-gallery{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:auto!important;
+  aspect-ratio:auto!important;
+  align-items:start!important;
+  overflow:visible!important;
+  gap:10px!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage.has-4-images .bcw-story-gallery img{
+  position:static!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:clamp(240px,28vw,420px)!important;
+  max-height:none!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  object-fit:cover!important;
+}
+@media(max-width:700px){
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage.has-4-images .bcw-story-gallery{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage.has-4-images .bcw-story-gallery img{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:clamp(180px,50vw,280px)!important;
+  }
+}
