@@ -22,6 +22,27 @@ $hero = $data->hero_image_url( 'full' );
 </section>
 <?php endif; ?>
 
+<?php
+$identity_enabled = ! empty( $data->get( 'bcw_identity_enabled' ) );
+$divider_mark_id  = absint( $data->get( 'bcw_identity_secondary_image_id' ) );
+?>
+<?php if ( $identity_enabled && $divider_mark_id ) : ?>
+<div class="bcw-editorial-divider" data-reveal aria-hidden="true">
+    <span class="bcw-editorial-divider-line"></span>
+    <?php echo wp_get_attachment_image(
+        $divider_mark_id,
+        'medium',
+        false,
+        array(
+            'class'   => 'bcw-editorial-divider-mark',
+            'loading' => 'lazy',
+            'alt'     => '',
+        )
+    ); ?>
+    <span class="bcw-editorial-divider-line"></span>
+</div>
+<?php endif; ?>
+
 
 <?php
 $home_links = array(
