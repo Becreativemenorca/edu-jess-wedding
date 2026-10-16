@@ -12,11 +12,11 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-nav{display:none;position:absolute;top:100%;left:4vw;right:4vw;padding:26px;background:var(--bcw-cream-2);flex-direction:column;gap:16px}
 .bcw-nav.is-open{display:flex}.bcw-nav a{font-size:19px}.bcw-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:5px}
 .bcw-main{min-height:80vh}
-.bcw-hero{min-height:calc(100svh - 70px);position:relative;display:flex;align-items:flex-end;color:white}
+.bcw-hero{min-height:calc(100svh - 70px);position:relative;display:flex;align-items:center;justify-content:center;color:white;text-align:center}
 .bcw-hero img,.bcw-hero-shade{position:absolute;inset:0}.bcw-hero-shade{background:linear-gradient(90deg,rgba(28,22,18,.52),rgba(28,22,18,.08))}
-.bcw-hero-copy{position:relative;z-index:2;padding:80px 7vw 9vw;max-width:1100px}
+.bcw-hero-copy{position:relative;z-index:2;padding:72px 7vw;max-width:1100px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .bcw-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase}.bcw-hero h1{font:400 clamp(52px,8vw,108px)/.9 'Cormorant Garamond',serif;letter-spacing:-.04em;margin:12px 0 22px}.bcw-page-title{font:400 clamp(44px,6.5vw,88px)/.94 'Cormorant Garamond',serif;letter-spacing:-.035em;margin:12px 0 22px}.bcw-hero h1 em{font-weight:400;color:#dbc5b3}
-.bcw-date{font-size:13px;letter-spacing:.18em}.bcw-tagline{font:400 24px/1.35 'Cormorant Garamond',serif;max-width:520px}
+.bcw-date{font-size:13px;letter-spacing:.18em}.bcw-tagline{font:400 24px/1.35 'Cormorant Garamond',serif;max-width:620px;margin-left:auto;margin-right:auto}
 .bcw-intro{padding:90px 8vw;max-width:1200px;margin:auto}.bcw-intro p{font:400 clamp(30px,4.2vw,50px)/1.12 'Cormorant Garamond',serif;margin:0}
 .bcw-page-head{max-width:1280px;margin:auto;padding:90px 6vw 55px}.bcw-page-head p{max-width:650px;line-height:1.8}
 .bcw-page-head-story,.bcw-page-head-menorca{position:relative;overflow:hidden}
@@ -393,4 +393,31 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy p{
   -webkit-text-fill-color:#fff!important;
   opacity:1!important;
   visibility:visible!important;
+}
+
+
+/* Centered hero composition */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero{
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy{
+  width:100%!important;
+  max-width:1100px!important;
+  margin:0 auto!important;
+  padding:72px 7vw!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-eyebrow,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-date,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-tagline,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
 }
