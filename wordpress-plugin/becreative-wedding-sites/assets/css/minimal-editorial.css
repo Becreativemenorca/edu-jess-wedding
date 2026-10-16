@@ -349,3 +349,22 @@ body.bcw-wedding a[href*="whatsapp.com/send"],
 body.bcw-wedding iframe[src*="whatsapp"]{
   display:none!important;
 }
+
+
+/* Explicit production-safe colors for RSVP CTA and closing */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp *,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-text,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-arrow{
+  color:var(--bcw-white)!important;
+}
+
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy *,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy p,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy .bcw-eyebrow{
+  color:#fff!important;
+}
