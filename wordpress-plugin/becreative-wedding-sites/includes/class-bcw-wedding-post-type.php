@@ -30,10 +30,11 @@ class BCW_Wedding_Post_Type {
             array(
                 'labels'             => $labels,
                 'public'             => true,
-                'show_in_rest'       => true,
+                'show_in_rest'       => false,
                 'menu_icon'          => 'dashicons-heart',
                 'supports'           => array( 'title', 'thumbnail' ),
                 'has_archive'        => false,
+                'exclude_from_search'=> true,
                 'rewrite'            => array(
                     'slug'       => 'bodas',
                     'with_front' => false,
