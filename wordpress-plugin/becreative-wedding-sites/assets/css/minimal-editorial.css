@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root{--bcw-cream:#f1e7d8;--bcw-cream-2:#f8f2e9;--bcw-ink:#2b2722;--bcw-brown:#735948;--bcw-line:rgba(43,39,34,.16);--bcw-white:#fffaf5}
 *{box-sizing:border-box}
@@ -7,7 +7,7 @@ body.bcw-wedding{margin:0;background:var(--bcw-cream);color:var(--bcw-ink);font-
 body.bcw-wedding img{display:block;width:100%;height:100%;object-fit:cover}
 body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-header{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 5vw;background:rgba(241,231,216,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bcw-line)}
-.bcw-brand{display:flex;flex-direction:column}.bcw-brand strong{font:400 22px 'Bodoni Moda',serif}.bcw-brand small{font-size:9px;letter-spacing:.16em}
+.bcw-brand{display:flex;flex-direction:column}.bcw-brand strong{font:400 22px 'Playfair Display',serif}.bcw-brand small{font-size:9px;letter-spacing:.16em}
 .bcw-menu-button{border:0;background:none;padding:8px;font:inherit}
 .bcw-nav{display:none;position:absolute;top:100%;left:4vw;right:4vw;padding:26px;background:var(--bcw-cream-2);flex-direction:column;gap:16px}
 .bcw-nav.is-open{display:flex}.bcw-nav a{font-size:19px}.bcw-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:5px}
@@ -15,9 +15,9 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-hero{min-height:calc(100svh - 70px);position:relative;display:flex;align-items:center;justify-content:center;color:white;text-align:center}
 .bcw-hero img,.bcw-hero-shade{position:absolute;inset:0}.bcw-hero-shade{background:linear-gradient(90deg,rgba(28,22,18,.52),rgba(28,22,18,.08))}
 .bcw-hero-copy{position:relative;z-index:2;padding:64px 6vw;max-width:900px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.bcw-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase}.bcw-hero h1{font:400 clamp(58px,8vw,104px)/.88 'Bodoni Moda',serif;letter-spacing:-.04em;margin:16px auto 20px;max-width:100%;white-space:nowrap}.bcw-page-title{font:400 clamp(44px,6.5vw,88px)/.94 'Bodoni Moda',serif;letter-spacing:-.035em;margin:12px 0 22px}.bcw-hero h1 em{font-weight:400;color:#dbc5b3}
-.bcw-date{font-size:13px;letter-spacing:.18em}.bcw-tagline{font:400 24px/1.35 'Bodoni Moda',serif;max-width:620px;margin-left:auto;margin-right:auto}
-.bcw-intro{padding:90px 8vw;max-width:1200px;margin:auto}.bcw-intro p{font:400 clamp(30px,4.2vw,50px)/1.12 'Bodoni Moda',serif;margin:0}
+.bcw-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase}.bcw-hero h1{font:400 clamp(58px,8vw,104px)/.88 'Playfair Display',serif;letter-spacing:-.04em;margin:16px auto 20px;max-width:100%;white-space:nowrap}.bcw-page-title{font:400 clamp(44px,6.5vw,88px)/.94 'Playfair Display',serif;letter-spacing:-.035em;margin:12px 0 22px}.bcw-hero h1 em{font-weight:400;color:#dbc5b3}
+.bcw-date{font-size:13px;letter-spacing:.18em}.bcw-tagline{font:400 24px/1.35 'Playfair Display',serif;max-width:620px;margin-left:auto;margin-right:auto}
+.bcw-intro{padding:90px 8vw;max-width:1200px;margin:auto}.bcw-intro p{font:400 clamp(30px,4.2vw,50px)/1.12 'Playfair Display',serif;margin:0}
 .bcw-page-head{max-width:1280px;margin:auto;padding:90px 6vw 55px}.bcw-page-head p{max-width:650px;line-height:1.8}
 .bcw-page-head-story,.bcw-page-head-menorca{position:relative;overflow:hidden}
 .bcw-identity-mark{display:block;height:auto!important;object-fit:contain!important;margin-top:20px;mix-blend-mode:multiply;pointer-events:none}
@@ -30,12 +30,12 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
   .bcw-page-head-menorca .bcw-identity-secondary{position:absolute;right:8vw;bottom:30px;width:clamp(92px,10vw,145px)!important;max-height:none;margin:0;opacity:.18;object-position:center}
 }
 .bcw-story-list,.bcw-cards,.bcw-info-list{max-width:1280px;margin:auto;padding:0 6vw 100px}
-.bcw-story-item{display:grid;gap:34px;padding:65px 0;border-top:1px solid var(--bcw-line)}.bcw-story-copy{max-width:650px}.bcw-story-year{font-size:10px;letter-spacing:.18em}.bcw-story-item h2,.bcw-card h2,.bcw-info-item h2{font:400 clamp(30px,3.8vw,46px)/1.05 'Bodoni Moda',serif;margin:10px 0 20px}.bcw-story-item p,.bcw-card p,.bcw-info-item p{line-height:1.8}.bcw-story-image{min-height:430px;max-height:760px}
+.bcw-story-item{display:grid;gap:34px;padding:65px 0;border-top:1px solid var(--bcw-line)}.bcw-story-copy{max-width:650px}.bcw-story-year{font-size:10px;letter-spacing:.18em}.bcw-story-item h2,.bcw-card h2,.bcw-info-item h2{font:400 clamp(30px,3.8vw,46px)/1.05 'Playfair Display',serif;margin:10px 0 20px}.bcw-story-item p,.bcw-card p,.bcw-info-item p{line-height:1.8}.bcw-story-image{min-height:430px;max-height:760px}
 .bcw-cards{display:grid;gap:28px}.bcw-card{padding:0 0 36px;border-bottom:1px solid var(--bcw-line)}.bcw-card-image{aspect-ratio:4/3;margin-bottom:22px}.bcw-card-meta{font-size:10px;letter-spacing:.15em;text-transform:uppercase}
 .bcw-info-item{padding:34px 0;border-top:1px solid var(--bcw-line);display:grid;grid-template-columns:50px 1fr;gap:20px}.bcw-info-item h2{font-size:clamp(28px,3vw,36px);margin-top:0}
 .bcw-empty{max-width:900px;margin:auto;padding:80px 6vw 120px;line-height:1.8}
 .bcw-rsvp-box{max-width:760px;margin:0 auto;padding:0 6vw 120px}.bcw-rsvp-box form{display:grid;gap:20px}.bcw-rsvp-box input,.bcw-rsvp-box textarea{width:100%;border:0;border-bottom:1px solid var(--bcw-ink);background:transparent;padding:13px 0}.bcw-button{display:inline-block;border:1px solid currentColor;background:transparent;padding:13px 18px}
-.bcw-footer{padding:70px 6vw;text-align:center;border-top:1px solid var(--bcw-line)}.bcw-footer strong{font:400 32px 'Bodoni Moda',serif}.bcw-footer p{font-size:11px;letter-spacing:.14em}
+.bcw-footer{padding:70px 6vw;text-align:center;border-top:1px solid var(--bcw-line)}.bcw-footer strong{font:400 32px 'Playfair Display',serif}.bcw-footer p{font-size:11px;letter-spacing:.14em}
 .bcw-js [data-reveal]{opacity:.001;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}.bcw-js [data-reveal].is-visible{opacity:1;transform:none}
 @media(min-width:900px){.bcw-menu-button{display:none}.bcw-nav{display:flex;position:static;padding:0;background:transparent;flex-direction:row;align-items:center;gap:20px}.bcw-nav a{font-size:11px;text-transform:uppercase;letter-spacing:.08em}.bcw-story-item{grid-template-columns:.8fr 1.2fr;align-items:center}.bcw-story-item:nth-child(even){grid-template-columns:1.2fr .8fr}.bcw-story-item:nth-child(even) .bcw-story-copy{order:2}.bcw-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.bcw-js [data-reveal]{opacity:1!important;transform:none!important}}
@@ -44,11 +44,11 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 /* Home section hub — simple editorial navigation */
 .bcw-home-nav{max-width:1120px;margin:0 auto;padding:30px 6vw 105px}
 .bcw-home-nav-head{max-width:760px;margin-bottom:30px}
-.bcw-home-nav-head h2{font:400 clamp(34px,4.5vw,54px)/1 'Bodoni Moda',serif;letter-spacing:-.025em;margin:10px 0 0}
+.bcw-home-nav-head h2{font:400 clamp(34px,4.5vw,54px)/1 'Playfair Display',serif;letter-spacing:-.025em;margin:10px 0 0}
 .bcw-home-nav-list{border-top:1px solid var(--bcw-line)}
 .bcw-home-nav-link{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 4px;border-bottom:1px solid var(--bcw-line);transition:padding .2s ease,opacity .2s ease}
 .bcw-home-nav-link:hover{padding-left:10px}
-.bcw-home-nav-label{font:400 clamp(27px,3.2vw,38px)/1 'Bodoni Moda',serif}
+.bcw-home-nav-label{font:400 clamp(27px,3.2vw,38px)/1 'Playfair Display',serif}
 .bcw-home-nav-arrow{font-size:19px;line-height:1}
 .bcw-home-nav-rsvp{margin-top:22px;min-height:76px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:#3a332c;color:var(--bcw-white)!important}
 .bcw-home-nav-rsvp .bcw-home-nav-label{font-size:clamp(25px,3vw,34px);color:var(--bcw-white)!important;-webkit-text-fill-color:var(--bcw-white)!important}
@@ -70,10 +70,10 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-entry-cover-photo>img,.bcw-entry-shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bcw-entry-shade{background:linear-gradient(180deg,rgba(20,16,13,.08),rgba(20,16,13,.62))}
 .bcw-entry-copy{position:relative;z-index:2;text-align:center;padding:70px 7vw 8vh;max-width:920px;margin:auto}
-.bcw-entry-copy h1{font:400 clamp(48px,8vw,96px)/.92 'Bodoni Moda',serif;letter-spacing:-.04em;margin:12px 0 16px}
+.bcw-entry-copy h1{font:400 clamp(48px,8vw,96px)/.92 'Playfair Display',serif;letter-spacing:-.04em;margin:12px 0 16px}
 .bcw-entry-copy p{letter-spacing:.15em}
 .bcw-entry-photo-date{margin:0}
-.bcw-entry-photo-phrase{font:400 italic clamp(22px,3.1vw,34px)/1.2 'Bodoni Moda',serif;letter-spacing:0!important;max-width:680px;margin:28px auto 0}
+.bcw-entry-photo-phrase{font:400 italic clamp(22px,3.1vw,34px)/1.2 'Playfair Display',serif;letter-spacing:0!important;max-width:680px;margin:28px auto 0}
 .bcw-entry-button{margin-top:22px;cursor:pointer}
 .bcw-entry-cover-photo .bcw-entry-button{color:#fff;min-width:166px;margin-top:30px}
 .bcw-entry-cover.is-leaving{opacity:0;visibility:hidden}
@@ -82,9 +82,9 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-entry-editorial-inner{position:relative;width:100%;min-height:100%;display:flex;align-items:center;justify-content:center;padding:50px 7vw;overflow:hidden}
 .bcw-entry-editorial-copy{position:relative;z-index:2;text-align:center;max-width:760px;margin:auto}
 .bcw-entry-editorial-copy .bcw-eyebrow{margin:0 0 22px;letter-spacing:.26em}
-.bcw-entry-editorial-copy h1{font:400 clamp(58px,10vw,118px)/.9 'Bodoni Moda',serif;letter-spacing:-.045em;margin:0}
+.bcw-entry-editorial-copy h1{font:400 clamp(58px,10vw,118px)/.9 'Playfair Display',serif;letter-spacing:-.045em;margin:0}
 .bcw-entry-divider{display:block;width:54px;height:1px;background:var(--bcw-line);margin:28px auto 22px}
-.bcw-entry-date{font:400 18px/1.3 'Bodoni Moda',serif;letter-spacing:.22em;margin:0}
+.bcw-entry-date{font:400 18px/1.3 'Playfair Display',serif;letter-spacing:.22em;margin:0}
 .bcw-entry-lighthouse{display:block!important;width:clamp(135px,18vw,220px)!important;height:auto!important;object-fit:contain!important;margin:34px auto 0;opacity:.56;mix-blend-mode:multiply}
 .bcw-entry-botanical{position:absolute!important;top:-34px;right:-38px;width:clamp(150px,24vw,300px)!important;height:auto!important;object-fit:contain!important;opacity:.14;mix-blend-mode:multiply;pointer-events:none}
 .bcw-entry-cover-editorial .bcw-entry-button{color:var(--bcw-ink);margin-top:34px;min-width:116px;background:transparent}
@@ -122,7 +122,7 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-closing img,.bcw-closing:after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bcw-closing:after{content:"";background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.24))}
 .bcw-closing-copy{position:relative;z-index:2;padding:70px 7vw;max-width:900px}
-.bcw-closing-copy h2{font:400 clamp(34px,4.8vw,58px)/1.05 'Bodoni Moda',serif;margin:10px 0;text-shadow:0 2px 18px rgba(0,0,0,.28)}
+.bcw-closing-copy h2{font:400 clamp(34px,4.8vw,58px)/1.05 'Playfair Display',serif;margin:10px 0;text-shadow:0 2px 18px rgba(0,0,0,.28)}
 
 /* Couple portal */
 .bcw-portal-login,.bcw-portal{max-width:1200px;margin:0 auto;padding:0 6vw 120px}
@@ -130,7 +130,7 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-portal-login input{width:100%;padding:12px}
 .bcw-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:28px}
 .bcw-stats article{padding:24px;background:var(--bcw-cream-2);border:1px solid var(--bcw-line)}
-.bcw-stats strong{display:block;font:400 42px 'Bodoni Moda',serif}
+.bcw-stats strong{display:block;font:400 42px 'Playfair Display',serif}
 .bcw-stats span{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .bcw-table-wrap{overflow:auto;margin-top:26px;border-top:1px solid var(--bcw-line)}
 .bcw-table{width:100%;border-collapse:collapse;min-width:900px}
@@ -149,17 +149,17 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 
 /* Production theme isolation */
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-cover-photo .bcw-entry-copy h1{
-  font-family:'Bodoni Moda',Georgia,'Times New Roman',serif!important;
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
   font-size:clamp(48px,8vw,96px)!important;
   font-weight:400!important;
   font-style:normal!important;
   line-height:.92!important;
-  letter-spacing:-.04em!important;
+  letter-spacing:-.015em!important;
   text-transform:none!important;
   color:#fff!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-photo-phrase{
-  font-family:'Bodoni Moda',Georgia,'Times New Roman',serif!important;
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
   font-size:clamp(22px,3.1vw,34px)!important;
   font-weight:400!important;
   font-style:italic!important;
@@ -207,7 +207,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-label,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2{
-  font-family:'Bodoni Moda',Georgia,'Times New Roman',serif!important;
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
 }
 
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-head .bcw-page-title,
@@ -260,7 +260,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-copy h1,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-photo-phrase,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-editorial-copy h1,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-date{
-  font-family:'Bodoni Moda',Georgia,'Times New Roman',serif!important;
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
   text-transform:none!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-title,
@@ -431,7 +431,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
   }
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
     font-size:clamp(46px,10vw,66px)!important;
-    letter-spacing:-.035em!important;
+    letter-spacing:-.022em!important;
   }
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-eyebrow{
     font-size:9px!important;
@@ -509,11 +509,11 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-header{
   backdrop-filter:blur(14px);
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-brand strong{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:24px!important;
   font-weight:400!important;
   line-height:1!important;
-  letter-spacing:-.025em!important;
+  letter-spacing:-.015em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-brand small{
   margin-top:6px;
@@ -550,15 +550,15 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-eyebrow{
   letter-spacing:.20em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(64px,8.6vw,116px)!important;
   font-weight:400!important;
   line-height:.86!important;
-  letter-spacing:-.055em!important;
+  letter-spacing:-.022em!important;
   margin:0!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1 em{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-style:italic!important;
   font-weight:400!important;
   color:#e7d4c4!important;
@@ -573,7 +573,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-date{
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-tagline{
   margin:28px auto 0!important;
   max-width:600px!important;
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(21px,2.4vw,30px)!important;
   font-style:italic!important;
   line-height:1.25!important;
@@ -585,10 +585,10 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-intro{
   padding:112px 7vw 118px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-intro p{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(34px,4.5vw,58px)!important;
   line-height:1.06!important;
-  letter-spacing:-.035em!important;
+  letter-spacing:-.022em!important;
 }
 
 /* Internal page headers */
@@ -603,10 +603,10 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-head .bcw-eyebrow{
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-title{
   max-width:930px;
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(48px,6.2vw,82px)!important;
   line-height:.96!important;
-  letter-spacing:-.045em!important;
+  letter-spacing:-.028em!important;
   margin:14px 0 24px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-head>p:last-of-type{
@@ -647,11 +647,11 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-card-meta{
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item h2,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-card h2,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-info-item h2{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-weight:400!important;
   font-size:clamp(34px,3.8vw,50px)!important;
   line-height:.98!important;
-  letter-spacing:-.035em!important;
+  letter-spacing:-.022em!important;
   margin:12px 0 22px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item p,
@@ -698,20 +698,20 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head .bcw-eyebrow{
   letter-spacing:.24em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(38px,4.6vw,58px)!important;
   line-height:.98!important;
-  letter-spacing:-.04em!important;
+  letter-spacing:-.015em!important;
   margin-top:12px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-link{
   padding:24px 2px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-link .bcw-home-nav-label{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(28px,3vw,38px)!important;
   font-weight:400!important;
-  letter-spacing:-.025em!important;
+  letter-spacing:-.015em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-arrow{
   font-size:18px!important;
@@ -723,7 +723,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp{
   background:#312a24!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-label{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(25px,2.7vw,33px)!important;
   font-weight:400!important;
 }
@@ -764,12 +764,12 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-button{
 /* Invitation covers */
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-copy h1,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-editorial-copy h1{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-weight:400!important;
-  letter-spacing:-.05em!important;
+  letter-spacing:-.032em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-photo-phrase{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-style:italic!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-date{
@@ -790,12 +790,12 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy{
   max-width:920px!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:clamp(40px,5vw,66px)!important;
   font-weight:400!important;
   font-style:italic!important;
   line-height:1.02!important;
-  letter-spacing:-.035em!important;
+  letter-spacing:-.022em!important;
 }
 
 /* Footer */
@@ -804,10 +804,10 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer{
   background:var(--bcw-cream)!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong{
-  font-family:'Bodoni Moda',Georgia,serif!important;
+  font-family:'Playfair Display',Georgia,serif!important;
   font-size:34px!important;
   font-weight:400!important;
-  letter-spacing:-.03em!important;
+  letter-spacing:-.018em!important;
 }
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer p{
   margin-top:12px!important;
@@ -829,7 +829,7 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer p{
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
     font-size:clamp(49px,13.5vw,70px)!important;
     line-height:.90!important;
-    letter-spacing:-.045em!important;
+    letter-spacing:-.028em!important;
   }
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy .bcw-eyebrow{
     max-width:88vw;
@@ -861,4 +861,45 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer p{
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav{
     padding:36px 8vw 92px!important;
   }
+}
+
+
+/* Luxury Editorial legibility refinement */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-brand strong,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-title,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-intro p,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-card h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-info-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-copy h1,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-editorial-copy h1,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2{
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
+  font-synthesis:none!important;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important;
+}
+
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-link .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-label{
+  font-weight:500!important;
+  line-height:1.08!important;
+  letter-spacing:-.01em!important;
+}
+
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-title,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-card h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-info-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2{
+  line-height:1.04!important;
+}
+
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero-copy h1{
+  line-height:.94!important;
+  letter-spacing:-.025em!important;
 }
