@@ -1116,7 +1116,10 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item:not(.is-collage)
   }
   body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img:nth-child(3):last-child{
     grid-column:1 / -1!important;
-    width:100%!important;
-    height:clamp(220px,58vw,340px)!important;
+    justify-self:center!important;
+    width:50%!important;
+    max-width:50%!important;
+    height:clamp(190px,52vw,290px)!important;
+    aspect-ratio:auto!important;
   }
 }
