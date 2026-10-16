@@ -948,3 +948,33 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav{
     height:50px!important;
   }
 }
+
+
+/* iOS Safari: keep mobile story collages inside their own grid */
+@media(max-width:700px){
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-gallery{
+    min-height:0!important;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-gallery img{
+    height:auto!important;
+    min-height:0!important;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery{
+    grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)!important;
+    grid-template-rows:repeat(2,minmax(0,1fr))!important;
+    aspect-ratio:5/4;
+    min-height:0!important;
+    overflow:hidden;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    aspect-ratio:auto!important;
+    object-fit:cover!important;
+    overflow:hidden;
+  }
+}
