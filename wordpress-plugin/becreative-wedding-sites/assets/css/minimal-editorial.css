@@ -214,3 +214,14 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2{
   font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif!important;
 }
+
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-head .bcw-page-title,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-head h1,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-card h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-info-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong{
+  color:var(--bcw-ink)!important;
+}
