@@ -169,6 +169,7 @@ class BCW_Wedding_Fields {
                 'image'   => 'Imagen principal',
                 'image_2' => 'Imagen secundaria',
                 'image_3' => 'Imagen adicional',
+                'image_4' => 'Cuarta imagen',
             ),
             'Añadir capítulo'
         );
@@ -245,7 +246,7 @@ class BCW_Wedding_Fields {
 
             if ( 'text' === $field_key ) {
                 echo '<textarea rows="3" name="' . esc_attr( $input_name ) . '">' . esc_textarea( $value ) . '</textarea>';
-            } elseif ( in_array( $field_key, array( 'image', 'image_2', 'image_3' ), true ) ) {
+            } elseif ( in_array( $field_key, array( 'image', 'image_2', 'image_3', 'image_4' ), true ) ) {
                 $image_id  = absint( $value );
                 $image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'medium' ) : '';
                 echo '<div class="bcw-image-field">';
@@ -453,7 +454,7 @@ class BCW_Wedding_Fields {
         update_post_meta( $post_id, 'bcw_rsvp_fields', $rsvp_fields );
 
         $repeaters = array(
-            'bcw_story'       => array( 'year', 'title', 'text', 'layout', 'image', 'image_2', 'image_3' ),
+            'bcw_story'       => array( 'year', 'title', 'text', 'layout', 'image', 'image_2', 'image_3', 'image_4' ),
             'bcw_wedding_day' => array( 'moment', 'place', 'time', 'text', 'image' ),
             'bcw_menorca'     => array( 'category', 'place', 'text', 'image', 'url' ),
             'bcw_information' => array( 'title', 'text' ),
@@ -474,7 +475,7 @@ class BCW_Wedding_Fields {
 
                     if ( 'text' === $field ) {
                         $clean[ $field ] = sanitize_textarea_field( $value );
-                    } elseif ( in_array( $field, array( 'image', 'image_2', 'image_3' ), true ) ) {
+                    } elseif ( in_array( $field, array( 'image', 'image_2', 'image_3', 'image_4' ), true ) ) {
                         $clean[ $field ] = absint( $value );
                     } elseif ( 'url' === $field ) {
                         $clean[ $field ] = esc_url_raw( $value );
