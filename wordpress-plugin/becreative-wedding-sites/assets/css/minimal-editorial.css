@@ -123,11 +123,11 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 .bcw-rsvp-deadline{font-size:12px;letter-spacing:.08em;margin-bottom:24px}
 
 /* Closing */
-.bcw-closing{position:relative;min-height:75svh;display:flex;align-items:flex-end;justify-content:center;color:#fff;text-align:center;overflow:hidden}
+.bcw-closing{position:relative;min-height:72svh;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;overflow:hidden}
 .bcw-closing img,.bcw-closing:after{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.bcw-closing:after{content:"";background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55))}
-.bcw-closing-copy{position:relative;z-index:2;padding:70px 7vw 9vh}
-.bcw-closing-copy h2{font:400 clamp(34px,4.8vw,58px)/1.05 'Cormorant Garamond',serif;margin:10px 0}
+.bcw-closing:after{content:"";background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.24))}
+.bcw-closing-copy{position:relative;z-index:2;padding:70px 7vw;max-width:900px}
+.bcw-closing-copy h2{font:400 clamp(34px,4.8vw,58px)/1.05 'Cormorant Garamond',serif;margin:10px 0;text-shadow:0 2px 18px rgba(0,0,0,.28)}
 
 /* Couple portal */
 .bcw-portal-login,.bcw-portal{max-width:1200px;margin:0 auto;padding:0 6vw 120px}
@@ -324,4 +324,21 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-year,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-card-meta{
   font-family:Manrope,Arial,sans-serif!important;
   font-weight:300!important;
+}
+
+
+/* Keep corporate floating WhatsApp widgets out of wedding microsites */
+body.bcw-wedding .joinchat,
+body.bcw-wedding #joinchat,
+body.bcw-wedding .ht-ctc-chat,
+body.bcw-wedding #ht-ctc-chat,
+body.bcw-wedding #qlwapp,
+body.bcw-wedding .qlwapp,
+body.bcw-wedding .floating-wpp,
+body.bcw-wedding .wa__btn_popup,
+body.bcw-wedding .whatsapp_float,
+body.bcw-wedding .whatsapp-button,
+body.bcw-wedding [class*="whatsapp-widget"],
+body.bcw-wedding [id*="whatsapp-widget"]{
+  display:none!important;
 }
