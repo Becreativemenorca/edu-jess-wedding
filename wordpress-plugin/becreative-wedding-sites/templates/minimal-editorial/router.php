@@ -98,7 +98,7 @@ if ( $show_entry_cover ) :
                 <img class="bcw-entry-lighthouse" src="<?php echo esc_url( $identity_primary ); ?>" alt="" aria-hidden="true">
             <?php endif; ?>
 
-            <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Entrar</button>
+            <button type="button" class="bcw-button bcw-entry-button" data-enter-wedding>Abrir invitación</button>
         </div>
     </div>
 </div>
@@ -113,7 +113,7 @@ endif;
         <small><?php echo esc_html( $date ); ?></small>
     </a>
 
-    <button class="bcw-menu-button" data-menu-button aria-expanded="false" aria-label="Abrir menú">Menú</button>
+    <button class="bcw-menu-button" data-menu-button aria-expanded="false" aria-label="Abrir secciones">Ver secciones</button>
 
     <nav class="bcw-nav" data-menu>
         <?php
