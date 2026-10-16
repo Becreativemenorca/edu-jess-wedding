@@ -1123,3 +1123,41 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item:not(.is-collage)
     aspect-ratio:auto!important;
   }
 }
+
+
+/* Mobile collage centering — structural grid, no justify-self dependency */
+@media(max-width:700px){
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:none!important;
+    grid-auto-rows:auto!important;
+    column-gap:10px!important;
+    row-gap:10px!important;
+  }
+
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img:nth-child(1){
+    grid-column:1 / span 2!important;
+    grid-row:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img:nth-child(2){
+    grid-column:3 / span 2!important;
+    grid-row:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img:nth-child(3):last-child{
+    grid-column:2 / span 2!important;
+    grid-row:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:clamp(190px,52vw,290px)!important;
+  }
+
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage .bcw-story-gallery img:only-child{
+    grid-column:1 / -1!important;
+  }
+}
