@@ -214,6 +214,7 @@ class BCW_RSVP {
 
         if ( $inserted ) {
             self::send_notification( $wedding_id, $row );
+            self::send_guest_confirmation( $wedding_id, $row );
         }
 
         self::redirect_after_submit( $wedding_id, $inserted ? 'ok' : 'error' );
@@ -255,6 +256,41 @@ class BCW_RSVP {
         );
 
         wp_mail( $to, $subject, implode( "\n", $lines ) );
+    }
+
+    private static function send_guest_confirmation( $wedding_id, $row ) {
+        $guest_email = isset( $row['email'] ) ? sanitize_email( $row['email'] ) : '';
+        if ( ! $guest_email || ! is_email( $guest_email ) ) {
+            return;
+        }
+
+        $data       = new BCW_Wedding_Data( $wedding_id );
+        $names      = $data->names() ? $data->names() : get_the_title( $wedding_id );
+        $date       = $data->date_display();
+        $location   = $data->get( 'bcw_location' );
+        $attendance = 'yes' === $row['attendance'] ? 'Sí, asistirás.' : 'Hemos recibido que no podrás asistir.';
+
+        $subject = sprintf( 'Confirmación recibida · %s', $names );
+
+        $lines = array(
+            'Hola ' . $row['guest_name'] . ',',
+            '',
+            'Hemos recibido correctamente tu confirmación para la boda de ' . $names . '.',
+            '',
+            'Asistencia: ' . $attendance,
+        );
+
+        if ( $date || $location ) {
+            $lines[] = 'Boda: ' . trim( $location . ( $location && $date ? ' · ' : '' ) . $date );
+        }
+
+        $lines[] = '';
+        $lines[] = 'Puedes volver a consultar la invitación aquí:';
+        $lines[] = BCW_Wedding_Router::url( $wedding_id );
+        $lines[] = '';
+        $lines[] = 'Gracias por responder.';
+
+        wp_mail( $guest_email, $subject, implode( "\n", $lines ) );
     }
 
     private static function redirect_after_submit( $wedding_id, $status ) {
