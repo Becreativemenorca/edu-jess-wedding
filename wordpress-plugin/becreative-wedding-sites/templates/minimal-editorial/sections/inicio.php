@@ -61,12 +61,12 @@ $home_links = array(
         <?php endforeach; ?>
 
         <?php if ( $data->section_enabled( 'rsvp' ) ) : ?>
-            <a class="bcw-home-nav-card bcw-home-nav-rsvp" href="<?php echo esc_url( BCW_Wedding_Router::url( $post_id, 'rsvp' ) ); ?>">
-                <span>
-                    <span class="bcw-home-nav-label">Confirmar asistencia</span>
-                    <span class="bcw-home-nav-text">Cuando lo tengas claro, cuéntanos si podrás acompañarnos.</span>
+            <a class="bcw-home-nav-card bcw-home-nav-rsvp" href="<?php echo esc_url( BCW_Wedding_Router::url( $post_id, 'rsvp' ) ); ?>" style="color:#fffaf5!important;-webkit-text-fill-color:#fffaf5!important;">
+                <span class="bcw-rsvp-cta-copy" style="color:#fffaf5!important;-webkit-text-fill-color:#fffaf5!important;opacity:1!important;visibility:visible!important;">
+                    <span class="bcw-home-nav-label" style="color:#fffaf5!important;-webkit-text-fill-color:#fffaf5!important;opacity:1!important;visibility:visible!important;">Confirmar asistencia</span>
+                    <span class="bcw-home-nav-text" style="color:#fffaf5!important;-webkit-text-fill-color:#fffaf5!important;opacity:.82!important;visibility:visible!important;">Cuando lo tengas claro, cuéntanos si podrás acompañarnos.</span>
                 </span>
-                <span class="bcw-home-nav-arrow" aria-hidden="true">→</span>
+                <span class="bcw-home-nav-arrow" aria-hidden="true" style="color:#fffaf5!important;-webkit-text-fill-color:#fffaf5!important;opacity:1!important;visibility:visible!important;">→</span>
             </a>
         <?php endif; ?>
     </div>
