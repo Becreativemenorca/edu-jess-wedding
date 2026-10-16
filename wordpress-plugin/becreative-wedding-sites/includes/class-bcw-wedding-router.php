@@ -20,7 +20,7 @@ class BCW_Wedding_Router {
         add_action( 'init', array( __CLASS__, 'add_rewrite_rules' ), 20 );
         add_filter( 'query_vars', array( __CLASS__, 'query_vars' ) );
         add_filter( 'template_include', array( __CLASS__, 'template_include' ) );
-        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
+        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ), 999 );
     }
 
     public static function add_rewrite_rules() {
