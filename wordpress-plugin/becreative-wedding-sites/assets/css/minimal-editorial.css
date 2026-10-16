@@ -40,6 +40,35 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
 @media(min-width:900px){.bcw-menu-button{display:none}.bcw-nav{display:flex;position:static;padding:0;background:transparent;flex-direction:row;align-items:center;gap:20px}.bcw-nav a{font-size:11px;text-transform:uppercase;letter-spacing:.08em}.bcw-story-item{grid-template-columns:.8fr 1.2fr;align-items:center}.bcw-story-item:nth-child(even){grid-template-columns:1.2fr .8fr}.bcw-story-item:nth-child(even) .bcw-story-copy{order:2}.bcw-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.bcw-js [data-reveal]{opacity:1!important;transform:none!important}}
 
+
+/* Home section hub */
+.bcw-home-nav{max-width:1280px;margin:0 auto;padding:10px 6vw 110px}
+.bcw-home-nav-head{max-width:720px;margin-bottom:34px}
+.bcw-home-nav-head h2{font:400 clamp(38px,5vw,64px)/.98 'Cormorant Garamond',serif;letter-spacing:-.03em;margin:10px 0 14px}
+.bcw-home-nav-head>p:last-child{line-height:1.7;max-width:620px}
+.bcw-home-nav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bcw-home-nav-card{position:relative;min-height:150px;padding:22px 20px 48px;border:1px solid var(--bcw-line);background:rgba(255,250,245,.28);transition:background .2s ease,transform .2s ease}
+.bcw-home-nav-card:hover{background:var(--bcw-cream-2);transform:translateY(-2px)}
+.bcw-home-nav-label{display:block;font:400 clamp(24px,3vw,34px)/1 'Cormorant Garamond',serif;margin-bottom:10px}
+.bcw-home-nav-text{display:block;font-size:12px;line-height:1.55;opacity:.72}
+.bcw-home-nav-arrow{position:absolute;right:18px;bottom:16px;font-size:20px}
+.bcw-home-nav-rsvp{grid-column:1/-1;min-height:auto;display:flex;align-items:center;justify-content:space-between;padding:24px 58px 24px 22px;background:var(--bcw-ink);color:var(--bcw-white)!important}
+.bcw-home-nav-rsvp:hover{background:var(--bcw-brown)}
+.bcw-home-nav-rsvp .bcw-home-nav-text{max-width:560px;opacity:.78}
+.bcw-home-nav-rsvp .bcw-home-nav-arrow{top:50%;bottom:auto;transform:translateY(-50%)}
+@media(max-width:520px){
+  .bcw-home-nav{padding-left:5vw;padding-right:5vw}
+  .bcw-home-nav-card{min-height:138px;padding:18px 16px 42px}
+  .bcw-home-nav-label{font-size:25px}
+  .bcw-home-nav-text{font-size:11px}
+  .bcw-home-nav-rsvp{min-height:auto;padding:20px 52px 20px 18px}
+}
+@media(min-width:900px){
+  .bcw-home-nav-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .bcw-home-nav-card{min-height:180px;padding:26px 24px 54px}
+  .bcw-home-nav-rsvp{grid-column:1/-1;min-height:auto;padding:28px 64px 28px 26px}
+}
+
 /* Optional invitation cover */
 .bcw-entry-cover{position:fixed;inset:0;z-index:5000;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}
 .bcw-entry-cover-photo{color:#fff;background:#1f1b18}
