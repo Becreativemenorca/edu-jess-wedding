@@ -122,7 +122,7 @@ endif;
             'la-boda'     => 'La boda',
             'menorca'     => 'Nuestra Menorca',
             'informacion' => 'Información',
-            'rsvp'        => 'RSVP',
+            'rsvp'        => 'Confirmar asistencia',
         );
         foreach ( $links as $slug => $label ) :
             if ( ! $data->section_enabled( $slug ) ) {
