@@ -19,7 +19,7 @@ class BCW_Wedding_Transfer {
     );
 
     private static $repeater_image_fields = array(
-        'bcw_story'       => array( 'image', 'image_2', 'image_3' ),
+        'bcw_story'       => array( 'image', 'image_2', 'image_3', 'image_4' ),
         'bcw_wedding_day' => array( 'image' ),
         'bcw_menorca'     => array( 'image' ),
     );
