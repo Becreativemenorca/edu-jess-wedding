@@ -10,6 +10,7 @@ class BCW_Sharing {
         add_filter( 'wpseo_opengraph_title', array( __CLASS__, 'yoast_title' ) );
         add_filter( 'wpseo_opengraph_desc', array( __CLASS__, 'yoast_description' ) );
         add_filter( 'wpseo_opengraph_image', array( __CLASS__, 'yoast_image' ) );
+        add_filter( 'wpseo_opengraph_url', array( __CLASS__, 'yoast_url' ) );
         add_filter( 'wp_robots', array( __CLASS__, 'robots_noindex' ) );
         add_filter( 'wp_sitemaps_post_types', array( __CLASS__, 'exclude_from_core_sitemap' ) );
         add_filter( 'wpseo_sitemap_exclude_post_type', array( __CLASS__, 'exclude_from_yoast_sitemap' ), 10, 2 );
@@ -56,6 +57,15 @@ class BCW_Sharing {
         return $custom ? $custom : $image;
     }
 
+    public static function yoast_url( $url ) {
+        $data = self::wedding_data();
+        if ( ! $data ) {
+            return $url;
+        }
+
+        return BCW_Wedding_Router::url( $data->id() );
+    }
+
     public static function robots_noindex( $robots ) {
         if ( is_singular( BCW_Wedding_Post_Type::POST_TYPE ) ) {
             $robots['noindex'] = true;
@@ -98,12 +108,28 @@ class BCW_Sharing {
         echo '<meta property="og:type" content="website">' . "\n";
         echo '<meta property="og:url" content="' . esc_url( BCW_Wedding_Router::url( $data->id() ) ) . '">' . "\n";
 
-        if ( $data->get( 'bcw_tagline' ) ) {
-            echo '<meta property="og:description" content="' . esc_attr( $data->get( 'bcw_tagline' ) ) . '">' . "\n";
+        $description = $data->get( 'bcw_tagline' );
+        if ( ! $description ) {
+            $description = $data->get( 'bcw_intro' );
+        }
+        if ( $description ) {
+            echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
         }
 
         if ( $image ) {
             echo '<meta property="og:image" content="' . esc_url( $image ) . '">' . "\n";
+            echo '<meta property="og:image:secure_url" content="' . esc_url( $image ) . '">' . "\n";
+            $image_id = absint( $data->get( 'bcw_og_image_id' ) );
+            if ( ! $image_id ) {
+                $image_id = absint( $data->get( 'bcw_hero_image_id' ) );
+            }
+            if ( $image_id ) {
+                $meta = wp_get_attachment_metadata( $image_id );
+                if ( ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ) {
+                    echo '<meta property="og:image:width" content="' . esc_attr( absint( $meta['width'] ) ) . '">' . "\n";
+                    echo '<meta property="og:image:height" content="' . esc_attr( absint( $meta['height'] ) ) . '">' . "\n";
+                }
+            }
         }
     }
 }
