@@ -55,3 +55,44 @@ if (entryCover) {
     });
   }
 }
+
+
+const removeCorporateChatWidgets = () => {
+  const selectors = [
+    '.joinchat',
+    '#joinchat',
+    '.ht-ctc-chat',
+    '#ht-ctc-chat',
+    '#qlwapp',
+    '.qlwapp',
+    '.floating-wpp',
+    '.wa__btn_popup',
+    '.whatsapp_float',
+    '.whatsapp-button',
+    '.chaty-widget',
+    '.chaty-widget-i',
+    '#chaty-widget',
+    '[class*="whatsapp-widget"]',
+    '[id*="whatsapp-widget"]',
+    'a[href*="wa.me"]',
+    'a[href*="api.whatsapp.com"]',
+    'a[href*="whatsapp.com/send"]',
+    'iframe[src*="whatsapp"]'
+  ];
+
+  document.querySelectorAll(selectors.join(',')).forEach((node) => {
+    // Remove the widget wrapper when one of its inner WhatsApp links is matched.
+    const wrapper = node.closest(
+      '.joinchat, .ht-ctc-chat, #qlwapp, .qlwapp, .floating-wpp, .wa__btn_popup, .whatsapp_float, .whatsapp-button, .chaty-widget, #chaty-widget'
+    );
+    (wrapper || node).remove();
+  });
+};
+
+removeCorporateChatWidgets();
+
+const chatWidgetObserver = new MutationObserver(() => {
+  removeCorporateChatWidgets();
+});
+
+chatWidgetObserver.observe(document.body, { childList: true, subtree: true });
