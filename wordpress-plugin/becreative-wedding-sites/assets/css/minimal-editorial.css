@@ -368,3 +368,29 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy p,
 body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy .bcw-eyebrow{
   color:#fff!important;
 }
+
+
+/* Final production hardening for CTA readability */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp{
+  background:#3a332c!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-rsvp-cta-copy,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-text,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-arrow{
+  color:#fffaf5!important;
+  -webkit-text-fill-color:#fffaf5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-rsvp .bcw-home-nav-text{
+  opacity:.82!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy p{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
