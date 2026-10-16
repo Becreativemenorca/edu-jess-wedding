@@ -212,7 +212,49 @@ class BCW_RSVP {
             array( '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' )
         );
 
+        if ( $inserted ) {
+            self::send_notification( $wedding_id, $row );
+        }
+
         self::redirect_after_submit( $wedding_id, $inserted ? 'ok' : 'error' );
+    }
+
+    private static function send_notification( $wedding_id, $row ) {
+        $to = get_post_meta( $wedding_id, 'bcw_rsvp_notification_email', true );
+        if ( ! $to ) {
+            $to = get_option( 'admin_email' );
+        }
+
+        $to = sanitize_email( $to );
+        if ( ! $to || ! is_email( $to ) ) {
+            return;
+        }
+
+        $wedding_name = get_the_title( $wedding_id );
+        $attendance   = 'yes' === $row['attendance'] ? 'Sí' : 'No';
+        $transport    = 'yes' === $row['transport'] ? 'Sí' : ( 'no' === $row['transport'] ? 'No' : '—' );
+
+        $subject = sprintf( '[%s] Nueva confirmación: %s', $wedding_name, $row['guest_name'] );
+
+        $lines = array(
+            'Nueva confirmación de asistencia',
+            '',
+            'Boda: ' . $wedding_name,
+            'Nombre: ' . $row['guest_name'],
+            'Asiste: ' . $attendance,
+            'Email: ' . ( $row['email'] ? $row['email'] : '—' ),
+            'Acompañantes: ' . ( $row['companions'] ? $row['companions'] : '—' ),
+            'Niños: ' . absint( $row['children_count'] ),
+            'Transporte: ' . $transport,
+            'Llegada: ' . ( $row['arrival'] ? $row['arrival'] : '—' ),
+            'Salida: ' . ( $row['departure'] ? $row['departure'] : '—' ),
+            'Alergias / intolerancias: ' . ( $row['allergies'] ? $row['allergies'] : '—' ),
+            'Necesidades especiales: ' . ( $row['special_needs'] ? $row['special_needs'] : '—' ),
+            '',
+            'La respuesta también está guardada en WordPress: Bodas → Confirmaciones.',
+        );
+
+        wp_mail( $to, $subject, implode( "\n", $lines ) );
     }
 
     private static function redirect_after_submit( $wedding_id, $status ) {
