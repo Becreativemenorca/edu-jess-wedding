@@ -150,3 +150,67 @@ body.bcw-wedding a{color:inherit;text-decoration:none}
   .bcw-stats{grid-template-columns:repeat(6,minmax(0,1fr))}
   .bcw-story-item.is-feature{grid-template-columns:1fr}
 }
+
+
+/* Production theme isolation */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-cover-photo .bcw-entry-copy h1{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif!important;
+  font-size:clamp(48px,8vw,96px)!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  line-height:.92!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+  color:#fff!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-photo-phrase{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif!important;
+  font-size:clamp(22px,3.1vw,34px)!important;
+  font-weight:400!important;
+  font-style:italic!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  color:#fff!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-cover .bcw-entry-button{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  min-width:166px!important;
+  min-height:0!important;
+  padding:13px 22px!important;
+  margin:30px auto 0!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#fff!important;
+  font-family:Manrope,Arial,sans-serif!important;
+  font-size:13px!important;
+  font-weight:400!important;
+  line-height:1.2!important;
+  letter-spacing:.04em!important;
+  text-transform:none!important;
+  text-decoration:none!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-cover .bcw-entry-button:hover,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-entry-cover .bcw-entry-button:focus{
+  background:#fff!important;
+  color:#2b2722!important;
+  border-color:#fff!important;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-hero h1,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-page-title,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-intro p,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-card h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-info-item h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-head h2,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-home-nav-label,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-footer strong,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-closing-copy h2{
+  font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif!important;
+}
