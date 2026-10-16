@@ -30,7 +30,7 @@ else :
             : 'standard';
 
         $images = array();
-        foreach ( array( 'image', 'image_2', 'image_3' ) as $image_key ) {
+        foreach ( array( 'image', 'image_2', 'image_3', 'image_4' ) as $image_key ) {
             if ( ! empty( $row[ $image_key ] ) ) {
                 $url = wp_get_attachment_image_url( absint( $row[ $image_key ] ), 'large' );
                 if ( $url ) {
@@ -38,8 +38,9 @@ else :
                 }
             }
         }
+        $image_count = count( $images );
 ?>
-    <article class="bcw-story-item is-<?php echo esc_attr( $layout ); ?>" data-reveal>
+    <article class="bcw-story-item is-<?php echo esc_attr( $layout ); ?> has-<?php echo esc_attr( $image_count ); ?>-images" data-reveal>
         <div class="bcw-story-copy">
             <?php if ( ! empty( $row['year'] ) ) : ?><span class="bcw-story-year"><?php echo esc_html( $row['year'] ); ?></span><?php endif; ?>
             <?php if ( ! empty( $row['title'] ) ) : ?><h2><?php echo esc_html( $row['title'] ); ?></h2><?php endif; ?>
