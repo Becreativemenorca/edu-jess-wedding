@@ -1,5 +1,5 @@
 <section class="bcw-page-head" data-reveal>
-    <p class="bcw-eyebrow">RSVP</p>
+    <p class="bcw-eyebrow">Confirmar asistencia</p>
     <h1 class="bcw-page-title">Nos encantará contar contigo.</h1>
     <p>Confirma tu asistencia y cualquier detalle que necesitemos tener en cuenta para la celebración.</p>
 </section>
