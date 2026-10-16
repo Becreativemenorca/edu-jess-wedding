@@ -318,6 +318,11 @@ class BCW_Wedding_Fields {
 
         echo '<p><label><input type="checkbox" name="bcw_rsvp_enabled" value="1"' . checked( $enabled, true, false ) . '> Activar RSVP</label></p>';
         echo '<p><label><strong>Fecha límite</strong><br><input type="date" name="bcw_rsvp_deadline" value="' . esc_attr( $deadline ) . '"></label></p>';
+
+        $notification_email = self::value( $post->ID, 'bcw_rsvp_notification_email', get_option( 'admin_email' ) );
+        echo '<p><label><strong>Email para avisos</strong><br><input type="email" name="bcw_rsvp_notification_email" value="' . esc_attr( $notification_email ) . '" style="width:100%"></label></p>';
+        echo '<p class="description">Recibirá un aviso cada vez que alguien envíe una confirmación. Las respuestas también se guardan siempre en Bodas → Confirmaciones.</p>';
+
         echo '<hr><strong>Preguntar por:</strong>';
 
         $labels = array(
@@ -380,13 +385,14 @@ class BCW_Wedding_Fields {
             'bcw_closing',
             'bcw_template',
             'bcw_rsvp_deadline',
+            'bcw_rsvp_notification_email',
             'bcw_entry_cover_style',
             'bcw_portal_email',
         );
 
         foreach ( $simple_text as $key ) {
             if ( isset( $_POST[ $key ] ) ) {
-                $value = 'bcw_portal_email' === $key
+                $value = in_array( $key, array( 'bcw_portal_email', 'bcw_rsvp_notification_email' ), true )
                     ? sanitize_email( wp_unslash( $_POST[ $key ] ) )
                     : sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
 
