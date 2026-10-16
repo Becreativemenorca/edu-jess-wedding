@@ -74,12 +74,37 @@ class BCW_Wedding_Router {
     }
 
     public static function url( $post_id, $section = 'inicio' ) {
-        $base = trailingslashit( get_permalink( $post_id ) );
+        $permalink = get_permalink( $post_id );
+
+        if ( ! $permalink ) {
+            $permalink = add_query_arg(
+                array(
+                    'post_type' => BCW_Wedding_Post_Type::POST_TYPE,
+                    'p'         => absint( $post_id ),
+                ),
+                home_url( '/' )
+            );
+        }
+
+        /*
+         * Draft/private weddings can use query-string permalinks in WordPress.
+         * Appending "/historia/" to one of those produces an invalid URL, so
+         * keep section navigation in query args until the wedding is published.
+         */
+        if ( false !== strpos( $permalink, '?' ) ) {
+            if ( 'inicio' === $section ) {
+                return remove_query_arg( 'bcw_section', $permalink );
+            }
+
+            return add_query_arg( 'bcw_section', sanitize_key( $section ), $permalink );
+        }
+
+        $base = trailingslashit( $permalink );
 
         if ( 'inicio' === $section ) {
             return $base;
         }
 
-        return $base . $section . '/';
+        return $base . sanitize_key( $section ) . '/';
     }
 }
