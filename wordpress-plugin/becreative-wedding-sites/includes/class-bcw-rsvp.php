@@ -49,6 +49,7 @@ class BCW_RSVP {
         add_action( 'admin_post_nopriv_bcw_rsvp_submit', array( __CLASS__, 'handle_submit' ) );
         add_action( 'admin_post_bcw_rsvp_submit', array( __CLASS__, 'handle_submit' ) );
         add_action( 'admin_post_bcw_rsvp_export', array( __CLASS__, 'handle_export' ) );
+        add_action( 'admin_post_bcw_rsvp_delete', array( __CLASS__, 'handle_delete' ) );
     }
 
     public static function enabled_fields( $wedding_id ) {
@@ -299,6 +300,55 @@ class BCW_RSVP {
             $status,
             BCW_Wedding_Router::url( $wedding_id, 'rsvp' )
         );
+        wp_safe_redirect( $url );
+        exit;
+    }
+
+    public static function delete_url( $wedding_id, $response_id ) {
+        return wp_nonce_url(
+            add_query_arg(
+                array(
+                    'action'      => 'bcw_rsvp_delete',
+                    'wedding_id'  => absint( $wedding_id ),
+                    'response_id' => absint( $response_id ),
+                ),
+                admin_url( 'admin-post.php' )
+            ),
+            'bcw_rsvp_delete_' . absint( $wedding_id ) . '_' . absint( $response_id )
+        );
+    }
+
+    public static function handle_delete() {
+        $wedding_id  = isset( $_GET['wedding_id'] ) ? absint( $_GET['wedding_id'] ) : 0;
+        $response_id = isset( $_GET['response_id'] ) ? absint( $_GET['response_id'] ) : 0;
+
+        if (
+            ! $wedding_id
+            || ! $response_id
+            || BCW_Wedding_Post_Type::POST_TYPE !== get_post_type( $wedding_id )
+            || ! current_user_can( 'edit_post', $wedding_id )
+        ) {
+            wp_die( 'No tienes permiso para borrar esta confirmación.' );
+        }
+
+        check_admin_referer( 'bcw_rsvp_delete_' . $wedding_id . '_' . $response_id );
+
+        global $wpdb;
+        $deleted = $wpdb->delete(
+            self::table_name(),
+            array(
+                'id'         => $response_id,
+                'wedding_id' => $wedding_id,
+            ),
+            array( '%d', '%d' )
+        );
+
+        $url = add_query_arg(
+            'bcw_rsvp_deleted',
+            $deleted ? '1' : '0',
+            BCW_Wedding_Router::url( $wedding_id, 'panel' )
+        );
+
         wp_safe_redirect( $url );
         exit;
     }
