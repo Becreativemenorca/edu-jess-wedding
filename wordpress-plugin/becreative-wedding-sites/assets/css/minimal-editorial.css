@@ -1198,3 +1198,83 @@ body.bcw-wedding.bcw-template-minimal-editorial .bcw-story-item.is-collage.has-4
     height:clamp(180px,50vw,280px)!important;
   }
 }
+
+
+/* RSVP review panel: compact, readable and admin-safe */
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review{
+  width:100%;
+  table-layout:fixed;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review th:first-child,
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review td:first-child{
+  width:42%;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-person small{
+  display:inline-block;
+  margin-top:4px;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details{
+  margin-top:10px;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details summary{
+  cursor:pointer;
+  font-size:11px;
+  font-weight:500;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details dl{
+  margin:12px 0 0;
+  padding:14px;
+  border:1px solid var(--bcw-line);
+  background:rgba(255,255,255,.28);
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details dl>div{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:12px;
+  padding:5px 0;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details dt{
+  font-size:10px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details dd{
+  margin:0;
+  font-size:12px;
+  line-height:1.5;
+}
+body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-delete{
+  display:inline-block;
+  margin-top:10px;
+  font-size:10px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+@media(max-width:800px){
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review{
+    table-layout:auto;
+    min-width:0!important;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review th:nth-child(3),
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review td:nth-child(3),
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review th:nth-child(4),
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review td:nth-child(4),
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review th:nth-child(5),
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review td:nth-child(5){
+    display:none;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review th:first-child,
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-review td:first-child{
+    width:auto;
+  }
+  body.bcw-wedding.bcw-template-minimal-editorial .bcw-rsvp-details dl>div{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+}
