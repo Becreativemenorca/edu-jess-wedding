@@ -366,7 +366,9 @@ class BCW_RSVP {
     }
 
     public static function stats( $wedding_id ) {
-        $rows = self::get_rows( $wedding_id );
+        $rows   = self::get_rows( $wedding_id );
+        $fields = self::enabled_fields( $wedding_id );
+
         $stats = array(
             'total'      => count( $rows ),
             'yes'        => 0,
@@ -383,11 +385,13 @@ class BCW_RSVP {
             if ( 'no' === $row['attendance'] ) {
                 $stats['no']++;
             }
-            $stats['children'] += absint( $row['children_count'] );
-            if ( 'yes' === $row['transport'] ) {
+            if ( ! empty( $fields['children'] ) ) {
+                $stats['children'] += absint( $row['children_count'] );
+            }
+            if ( ! empty( $fields['transport'] ) && 'yes' === $row['transport'] ) {
                 $stats['transport']++;
             }
-            if ( self::has_meaningful_allergy( $row['allergies'] ) ) {
+            if ( ! empty( $fields['allergies'] ) && self::has_meaningful_allergy( $row['allergies'] ) ) {
                 $stats['allergies']++;
             }
         }
