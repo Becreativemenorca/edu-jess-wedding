@@ -118,8 +118,9 @@ class BCW_Partner_Portal {
             return;
         }
 
-        $stats = BCW_RSVP::stats( $wedding_id );
-        $rows  = BCW_RSVP::get_rows( $wedding_id );
+        $stats  = BCW_RSVP::stats( $wedding_id );
+        $rows   = BCW_RSVP::get_rows( $wedding_id );
+        $fields = BCW_RSVP::enabled_fields( $wedding_id );
 
         echo '<section class="bcw-page-head"><p class="bcw-eyebrow">Panel privado</p><h1 class="bcw-page-title">Confirmaciones.</h1></section>';
         echo '<section class="bcw-portal">';
@@ -137,9 +138,15 @@ class BCW_Partner_Portal {
         self::stat( 'Respuestas', $stats['total'] );
         self::stat( 'Asistirán', $stats['yes'] );
         self::stat( 'No asistirán', $stats['no'] );
-        self::stat( 'Niños indicados', $stats['children'] );
-        self::stat( 'Transporte', $stats['transport'] );
-        self::stat( 'Con alergias declaradas', $stats['allergies'] );
+        if ( ! empty( $fields['children'] ) ) {
+            self::stat( 'Niños indicados', $stats['children'] );
+        }
+        if ( ! empty( $fields['transport'] ) ) {
+            self::stat( 'Transporte', $stats['transport'] );
+        }
+        if ( ! empty( $fields['allergies'] ) ) {
+            self::stat( 'Con alergias declaradas', $stats['allergies'] );
+        }
         echo '</div>';
 
         echo '<p><a class="bcw-button" href="' . esc_url( BCW_RSVP::export_url( $wedding_id ) ) . '">Exportar CSV</a></p>';
@@ -151,7 +158,14 @@ class BCW_Partner_Portal {
         }
 
         echo '<div class="bcw-table-wrap"><table class="bcw-table bcw-rsvp-review"><thead><tr>';
-        echo '<th>Invitado</th><th>Asiste</th><th>Niños</th><th>Transporte</th><th>Fecha</th>';
+        echo '<th>Invitado</th><th>Asiste</th>';
+        if ( ! empty( $fields['children'] ) ) {
+            echo '<th>Niños</th>';
+        }
+        if ( ! empty( $fields['transport'] ) ) {
+            echo '<th>Transporte</th>';
+        }
+        echo '<th>Fecha</th>';
         echo '</tr></thead><tbody>';
 
         foreach ( $rows as $row ) {
@@ -166,13 +180,27 @@ class BCW_Partner_Portal {
 
             echo '<details class="bcw-rsvp-details"><summary>Ver respuesta completa</summary><dl>';
             echo '<div><dt>Asistencia</dt><dd>' . esc_html( $attendance ) . '</dd></div>';
-            echo '<div><dt>Acompañantes</dt><dd>' . esc_html( $row['companions'] ? $row['companions'] : '—' ) . '</dd></div>';
-            echo '<div><dt>Niños</dt><dd>' . esc_html( absint( $row['children_count'] ) ) . '</dd></div>';
-            echo '<div><dt>Transporte</dt><dd>' . esc_html( $transport ) . '</dd></div>';
-            echo '<div><dt>Llegada</dt><dd>' . esc_html( $row['arrival'] ? $row['arrival'] : '—' ) . '</dd></div>';
-            echo '<div><dt>Salida</dt><dd>' . esc_html( $row['departure'] ? $row['departure'] : '—' ) . '</dd></div>';
-            echo '<div><dt>Alergias / intolerancias</dt><dd>' . esc_html( $row['allergies'] ? $row['allergies'] : '—' ) . '</dd></div>';
-            echo '<div><dt>Necesidades especiales</dt><dd>' . esc_html( $row['special_needs'] ? $row['special_needs'] : '—' ) . '</dd></div>';
+            if ( ! empty( $fields['companions'] ) ) {
+                echo '<div><dt>Acompañantes</dt><dd>' . esc_html( $row['companions'] ? $row['companions'] : '—' ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['children'] ) ) {
+                echo '<div><dt>Niños</dt><dd>' . esc_html( absint( $row['children_count'] ) ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['transport'] ) ) {
+                echo '<div><dt>Transporte</dt><dd>' . esc_html( $transport ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['arrival'] ) ) {
+                echo '<div><dt>Llegada</dt><dd>' . esc_html( $row['arrival'] ? $row['arrival'] : '—' ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['departure'] ) ) {
+                echo '<div><dt>Salida</dt><dd>' . esc_html( $row['departure'] ? $row['departure'] : '—' ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['allergies'] ) ) {
+                echo '<div><dt>Alergias / intolerancias</dt><dd>' . esc_html( $row['allergies'] ? $row['allergies'] : '—' ) . '</dd></div>';
+            }
+            if ( ! empty( $fields['special_needs'] ) ) {
+                echo '<div><dt>Necesidades especiales</dt><dd>' . esc_html( $row['special_needs'] ? $row['special_needs'] : '—' ) . '</dd></div>';
+            }
             echo '</dl></details>';
 
             if ( current_user_can( 'edit_post', $wedding_id ) ) {
@@ -180,8 +208,12 @@ class BCW_Partner_Portal {
             }
             echo '</td>';
             echo '<td>' . esc_html( $attendance ) . '</td>';
-            echo '<td>' . esc_html( absint( $row['children_count'] ) ) . '</td>';
-            echo '<td>' . esc_html( $transport ) . '</td>';
+            if ( ! empty( $fields['children'] ) ) {
+                echo '<td>' . esc_html( absint( $row['children_count'] ) ) . '</td>';
+            }
+            if ( ! empty( $fields['transport'] ) ) {
+                echo '<td>' . esc_html( $transport ) . '</td>';
+            }
             echo '<td>' . esc_html( wp_date( 'd/m/Y H:i', strtotime( $row['created_at'] ) ) ) . '</td>';
             echo '</tr>';
         }
