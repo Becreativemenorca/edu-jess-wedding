@@ -406,7 +406,7 @@ class BCW_RSVP {
         }
 
         $normalized = strtolower( remove_accents( $value ) );
-        $normalized = trim( preg_replace( '/[\\s\\.\\,;:_-]+/', ' ', $normalized ) );
+        $normalized = trim( preg_replace( '/[^a-z0-9]+/', ' ', $normalized ) );
 
         $none_values = array(
             'no',
@@ -416,11 +416,15 @@ class BCW_RSVP {
             'n a',
             'na',
             'no aplica',
+            'no tengo',
+            'no tenemos',
             'sin alergias',
             'sin alergia',
             'sin intolerancias',
+            'sin intolerancia',
             'ninguna alergia',
             'ninguna intolerancia',
+            'ninguna alergia o intolerancia',
         );
 
         return ! in_array( $normalized, $none_values, true );
