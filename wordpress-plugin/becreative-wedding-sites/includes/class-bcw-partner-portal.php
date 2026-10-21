@@ -124,6 +124,15 @@ class BCW_Partner_Portal {
         echo '<section class="bcw-page-head"><p class="bcw-eyebrow">Panel privado</p><h1 class="bcw-page-title">Confirmaciones.</h1></section>';
         echo '<section class="bcw-portal">';
 
+        if ( isset( $_GET['bcw_rsvp_deleted'] ) && current_user_can( 'edit_post', $wedding_id ) ) {
+            $deleted = sanitize_key( wp_unslash( $_GET['bcw_rsvp_deleted'] ) );
+            if ( '1' === $deleted ) {
+                echo '<div class="bcw-rsvp-success"><strong>Confirmación eliminada.</strong></div>';
+            } elseif ( '0' === $deleted ) {
+                echo '<div class="bcw-rsvp-error">No se pudo eliminar la confirmación.</div>';
+            }
+        }
+
         echo '<div class="bcw-stats">';
         self::stat( 'Respuestas', $stats['total'] );
         self::stat( 'Asistirán', $stats['yes'] );
@@ -143,6 +152,9 @@ class BCW_Partner_Portal {
 
         echo '<div class="bcw-table-wrap"><table class="bcw-table"><thead><tr>';
         echo '<th>Nombre</th><th>Asiste</th><th>Acompañantes</th><th>Niños</th><th>Transporte</th><th>Alergias</th><th>Fecha</th>';
+        if ( current_user_can( 'edit_post', $wedding_id ) ) {
+            echo '<th>Acciones</th>';
+        }
         echo '</tr></thead><tbody>';
 
         foreach ( $rows as $row ) {
@@ -158,6 +170,9 @@ class BCW_Partner_Portal {
             echo '<td>' . esc_html( 'yes' === $row['transport'] ? 'Sí' : ( 'no' === $row['transport'] ? 'No' : '—' ) ) . '</td>';
             echo '<td>' . esc_html( $row['allergies'] ? $row['allergies'] : '—' ) . '</td>';
             echo '<td>' . esc_html( wp_date( 'd/m/Y H:i', strtotime( $row['created_at'] ) ) ) . '</td>';
+            if ( current_user_can( 'edit_post', $wedding_id ) ) {
+                echo '<td><a class="bcw-button" style="font-size:11px!important;padding:8px 10px!important" href="' . esc_url( BCW_RSVP::delete_url( $wedding_id, $row['id'] ) ) . '" onclick="return confirm(\'¿Eliminar esta confirmación?\');">Eliminar</a></td>';
+            }
             echo '</tr>';
         }
 
