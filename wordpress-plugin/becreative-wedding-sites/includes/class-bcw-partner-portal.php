@@ -137,9 +137,9 @@ class BCW_Partner_Portal {
         self::stat( 'Respuestas', $stats['total'] );
         self::stat( 'Asistirán', $stats['yes'] );
         self::stat( 'No asistirán', $stats['no'] );
-        self::stat( 'Niños', $stats['children'] );
+        self::stat( 'Niños indicados', $stats['children'] );
         self::stat( 'Transporte', $stats['transport'] );
-        self::stat( 'Con alergias', $stats['allergies'] );
+        self::stat( 'Con alergias declaradas', $stats['allergies'] );
         echo '</div>';
 
         echo '<p><a class="bcw-button" href="' . esc_url( BCW_RSVP::export_url( $wedding_id ) ) . '">Exportar CSV</a></p>';
@@ -150,29 +150,39 @@ class BCW_Partner_Portal {
             return;
         }
 
-        echo '<div class="bcw-table-wrap"><table class="bcw-table"><thead><tr>';
-        echo '<th>Nombre</th><th>Asiste</th><th>Acompañantes</th><th>Niños</th><th>Transporte</th><th>Alergias</th><th>Fecha</th>';
-        if ( current_user_can( 'edit_post', $wedding_id ) ) {
-            echo '<th>Acciones</th>';
-        }
+        echo '<div class="bcw-table-wrap"><table class="bcw-table bcw-rsvp-review"><thead><tr>';
+        echo '<th>Invitado</th><th>Asiste</th><th>Niños</th><th>Transporte</th><th>Fecha</th>';
         echo '</tr></thead><tbody>';
 
         foreach ( $rows as $row ) {
+            $attendance = 'yes' === $row['attendance'] ? 'Sí' : 'No';
+            $transport  = 'yes' === $row['transport'] ? 'Sí' : ( 'no' === $row['transport'] ? 'No' : '—' );
+
             echo '<tr>';
-            echo '<td><strong>' . esc_html( $row['guest_name'] ) . '</strong>';
+            echo '<td class="bcw-rsvp-person"><strong>' . esc_html( $row['guest_name'] ) . '</strong>';
             if ( $row['email'] ) {
                 echo '<br><small>' . esc_html( $row['email'] ) . '</small>';
             }
-            echo '</td>';
-            echo '<td>' . esc_html( 'yes' === $row['attendance'] ? 'Sí' : 'No' ) . '</td>';
-            echo '<td>' . esc_html( $row['companions'] ) . '</td>';
-            echo '<td>' . esc_html( $row['children_count'] ) . '</td>';
-            echo '<td>' . esc_html( 'yes' === $row['transport'] ? 'Sí' : ( 'no' === $row['transport'] ? 'No' : '—' ) ) . '</td>';
-            echo '<td>' . esc_html( $row['allergies'] ? $row['allergies'] : '—' ) . '</td>';
-            echo '<td>' . esc_html( wp_date( 'd/m/Y H:i', strtotime( $row['created_at'] ) ) ) . '</td>';
+
+            echo '<details class="bcw-rsvp-details"><summary>Ver respuesta completa</summary><dl>';
+            echo '<div><dt>Asistencia</dt><dd>' . esc_html( $attendance ) . '</dd></div>';
+            echo '<div><dt>Acompañantes</dt><dd>' . esc_html( $row['companions'] ? $row['companions'] : '—' ) . '</dd></div>';
+            echo '<div><dt>Niños</dt><dd>' . esc_html( absint( $row['children_count'] ) ) . '</dd></div>';
+            echo '<div><dt>Transporte</dt><dd>' . esc_html( $transport ) . '</dd></div>';
+            echo '<div><dt>Llegada</dt><dd>' . esc_html( $row['arrival'] ? $row['arrival'] : '—' ) . '</dd></div>';
+            echo '<div><dt>Salida</dt><dd>' . esc_html( $row['departure'] ? $row['departure'] : '—' ) . '</dd></div>';
+            echo '<div><dt>Alergias / intolerancias</dt><dd>' . esc_html( $row['allergies'] ? $row['allergies'] : '—' ) . '</dd></div>';
+            echo '<div><dt>Necesidades especiales</dt><dd>' . esc_html( $row['special_needs'] ? $row['special_needs'] : '—' ) . '</dd></div>';
+            echo '</dl></details>';
+
             if ( current_user_can( 'edit_post', $wedding_id ) ) {
-                echo '<td><a class="bcw-button" style="font-size:11px!important;padding:8px 10px!important" href="' . esc_url( BCW_RSVP::delete_url( $wedding_id, $row['id'] ) ) . '" onclick="return confirm(\'¿Eliminar esta confirmación?\');">Eliminar</a></td>';
+                echo '<a class="bcw-rsvp-delete" href="' . esc_url( BCW_RSVP::delete_url( $wedding_id, $row['id'] ) ) . '" onclick="return confirm(\'¿Eliminar esta confirmación? Esta acción no se puede deshacer.\');">Eliminar</a>';
             }
+            echo '</td>';
+            echo '<td>' . esc_html( $attendance ) . '</td>';
+            echo '<td>' . esc_html( absint( $row['children_count'] ) ) . '</td>';
+            echo '<td>' . esc_html( $transport ) . '</td>';
+            echo '<td>' . esc_html( wp_date( 'd/m/Y H:i', strtotime( $row['created_at'] ) ) ) . '</td>';
             echo '</tr>';
         }
 
