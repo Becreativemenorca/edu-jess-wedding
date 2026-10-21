@@ -387,12 +387,39 @@ class BCW_RSVP {
             if ( 'yes' === $row['transport'] ) {
                 $stats['transport']++;
             }
-            if ( ! empty( $row['allergies'] ) ) {
+            if ( self::has_meaningful_allergy( $row['allergies'] ) ) {
                 $stats['allergies']++;
             }
         }
 
         return $stats;
+    }
+
+    public static function has_meaningful_allergy( $value ) {
+        $value = trim( wp_strip_all_tags( (string) $value ) );
+        if ( '' === $value ) {
+            return false;
+        }
+
+        $normalized = strtolower( remove_accents( $value ) );
+        $normalized = trim( preg_replace( '/[\\s\\.\\,;:_-]+/', ' ', $normalized ) );
+
+        $none_values = array(
+            'no',
+            'ninguna',
+            'ninguno',
+            'ningun',
+            'n a',
+            'na',
+            'no aplica',
+            'sin alergias',
+            'sin alergia',
+            'sin intolerancias',
+            'ninguna alergia',
+            'ninguna intolerancia',
+        );
+
+        return ! in_array( $normalized, $none_values, true );
     }
 
     public static function can_view_wedding( $wedding_id, $user_id = 0 ) {
